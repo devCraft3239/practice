@@ -1,0 +1,66 @@
+Notes2:
+numeber of substring: n*(n+1)/2
+we said that each record is uniquely identified by an offset in the partition. 
+Kafka employs an approach of ‘a dumb pipeline, smart clients’ meaning that Kafka brokers don’t know anything about consumer offsets. The consumers themselves are in charge of tracking which records have been consumed. Once the consumer reads the record it will store this offset in a special Kafka topic called __consumer_offsets (yes, those are two underscores at the beginning). When a consumer stores the offset in this topic we’re saying that it’s committing the offset.
+Topics enable Kafka producers and Kafka consumers to be loosely coupled (isolated from each other)
+Partitions are the main concurrency mechanism in Kafka. A topic is divided into 1 or more partitions, enabling producer and consumer loads to be scaled.x
+If you have more data in a topic than can fit on a single node you must increase the number of partitions. Partitions are spread across the nodes in a Kafka cluster. 
+Message ordering in Kafka is per partition only.
+Partitions can have copies to increase durability and availability and enable Kafka to failover to a broker with a replica of the partition if the broker with the leader partition fails. This is called the Replication Factor and can be 1 or more.
+If a producer doesn’t specify a partition key when producing a record, Kafka will use a round-robin partition assignment. Those records will be written evenly across all partitions of a particular topic.
+Kafka has the concept of consumer groups where several consumers are grouped to consume a given topic. Consumers in the same consumer group are assigned the same group-id value. The consumer group concept ensures that a message is only ever read by a single consumer in the group.
+Generic: abstarction layer to the types
+<T> List<T> fromArrayToList(T[] a) -> generic
+<T extends Number>  -> bounded generic
+Whenever the number of entries in the hashmap crosses the threshold value then the bucket size of the hashmap is doubled and rehashing is performed and all already existing entries(nodes) of the map are copied and new entries are added to this increased hashmap.
+Threshold value = Bucket size * Load factor
+the Iterator on Collection objects is fail-fast, while removing elements through the iterator works and does not cause exceptions. This updates the underlying map and the iterator’s state that refers to the internals of the map, so everything can stay consistent
+A Graph 
+	1. A finite set of vertices also called as nodes. 
+	2. A finite set of ordered pair of the form (u, v) called as edge. 
+
+a class can be considered as the blueprint or template, based on which objects can be created.
+	Class = A specific car model, such as Audi A4, BMW I8, Maruti Suzuki Vitara Brezza, etc.
+	Object = A specific car of any model, like the car you own
+	Characteristics = What is the color of your car? What is the Chassis number of your car? etc
+	Behavior = How to start the car? How to change the gear of the car? etc.
+
+Encapsulation can also be defined in two different ways:
+	1) Data hiding: Encapsulation is the process of hiding unwanted information, such as restricting access to any member of an object.
+	2) Data binding: Encapsulation is the process of binding the data members and the methods together as a whole, as a class.
+Polymorphism refers to the process by which some code, data, method, or object behaves differently under different circumstances or contexts.
+	- Compile time Polymorphism
+	- Runtime Polymorphism
+Interface: used to achieve full abstraction
+Abstract_class: partitial abstraction
+Exception-handling: So exception handling is the mechanism for identifying the undesirable states that the program can reach and specifying the desirable outcomes of such states.
+Arrays.asList()  vs Collections.singletonList(), new ArrayList<>(list)
+Through garbage collection, the unwanted memory is freed up by removing the objects that are no longer needed.
+The compiler is nothing but a translator of source code to machine-executable code.
+A class in the java program cannot be static except if it is the inner class.
+String-pool: a storage area in head used for strings literal only.
+	 - The sharing of the mutable structures between two unknown parties is not possible.
+A try block should be followed either by a catch block or by a finally block. 
+
+Array = same type element  + contigious memory allocation
+Techniques
+	- Sliding window: two pointers usually move in the same direction and never overtake each other
+	- Two pointers: general version of sliding window where the pointers can cross each other and can be on different arrays
+	- Traversing from the right: 
+	- Sorting the array: not work if the order of array elements need to be preserved
+	- Precomputation: where summation or multiplication of a subarray is involved
+	- Index has a hash key: O(1) space, use the array itself as a hash table
+	- Traversing the array more than once: O(n) twice/thrice may reduce/solve the prob
+	- Hashing map/set: put element/index if required for further lookup
+Array = same type element  + contigious memory allocation
+Techniques
+	- Sliding window: two pointers usually move in the same direction and never overtake each other
+	- Two pointers: general version of sliding window where the pointers can cross each other and can be on different arrays
+	- Traversing from the right: 
+	- Sorting the array: not work if the order of array elements need to be preserved
+	- Precomputation: where summation or multiplication of a subarray is involved
+	- Index has a hash key: O(1) space, use the array itself as a hash table
+	- Traversing the array more than once: O(n) twice/thrice may reduce/solve the prob
+	- Hashing map/set: put element/index if required for further lookup
+
+- On the shard level, a red status indicates that the specific shard is not allocated in the cluster, yellow means that the primary shard is allocated but replicas are not, and green means that all shards are allocated.

@@ -1,0 +1,33 @@
+Kafka: A distributed streaming data platform
+	distributed message/event broker system
+
+- Kafka is a set of machines working together to be able to handle and process real-time infinite data.
+- The Topic is a very specific type of data stream
+Q: how producer produce data to diff partition?
+- by default(if no hash key), the producers will send the message in a round-robin way.
+ That hash takes into consideration the number of the partitions of the topic,
+ that’s why that number cannot be changed when the topic is already created.
+- This offset is unique at the partition level, each partition has its owns offsets.
+Kafka-retention:
+- That is one more reason that makes Kafka so special, it stores the messages in the disk to be able to recover them later if necessary.
+Different from a messaging system, that the message is deleted after being consumed.
+
+- Each broker in a cluster is identified by an ID and contains at least one partition of a topic.
+To configure the number of the partitions copy in each broker, we need to configure something called Replication Factor when creating a topic.
+It will ensure that even if a broker goes down, his data won’t be lost, because of the replicas.
+leader-follower architecture:
+- When a leader goes down, a replica will be automatically elected as a new leader by Zookeeper.
+
+-  The ack is basically a confirmation that the message was delivered. In Kafka, we can configure this ack when producing the messages
+	ack = 0: we’re saying that we don’t want to receive the ack from Kafka.
+	ack = 1: default configuration, with that we’re saying that we want to receive an ack from the leader of the partition.
+	ack = all: their replicas as well.
+
+
+RabbitMQ                    Kafka                               Aws-Kinesis             Aws-SQS
+queue based                 log based                           log based               queue bases
+no retention                retention/replay                    retention upto 7 days   no retention
+producer coupled            consumer coupled                    shard base              FIFO, one delivery guaranteed
+complex routing             high throughput                     high throughput         less throughput
+transactional               stream events                       stream events           transactional/event based (put S3) processing
+no partition                partition logic                     shard logic             no parallel

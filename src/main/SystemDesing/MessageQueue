@@ -1,0 +1,11 @@
+Sync communication:
+	client wait for server to response
+	ex: call
+Async communication:
+	client does not wait for server to response
+	ex: sms, mail
+
+message-queue: line up to be processed request
+	ex: bank deposit, request-statement, request-invoices
+
+

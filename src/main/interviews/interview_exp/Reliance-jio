@@ -1,0 +1,86 @@
+Reliance-jio R2
+---------------
+List<Employee> employeeList;
+
+employeeList.map().collec(Collectors.ToMap)
+
+
+for(int i=0;i<size();i++)
+{
+	if(employeelist.get(i).getId() == 10)
+		employeeList.remove(i)
+}
+
+
+EmployeeSortId extends Comprator{
+	@Override
+	public void compare(Employee1 e1, )
+
+}
+
+EmployeeSortName extends Comprator{
+	@Override
+
+}
+
+
+collection.sort(employeeList, new Comprator {
+	override
+	public void 
+})
+
+executorServices -> threadPool()
+
+Employee{
+	public static synchronized int getSalary(){
+		// code 
+		thread 1
+	}
+
+	public synchronized int getSalary(){
+		// code 
+		thread 1
+	}
+
+
+	Thread t1 =  new Thread(){
+		@Override
+		public void run(){
+			Employee.getSalary();
+		}
+	}
+}
+
+
+
+
+header -> meta-data
+Key -> doc
+
+
+same consumer-group
+number_of_partition         no_of_consumer
+	more 2						less 1
+	less 1						 more (idle) 2
+	equal 2					     equal 2
+
+
+topic
+consumer-group
+offset
+broker(ip)
+no_number_consumer
+
+
+duration
+	- not processed
+		- discareded
+		- push event into
+
+
+premium-mid
+	- access
+
+reason (how much data fetching from DB)
+	- partition
+indexing

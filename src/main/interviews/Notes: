@@ -1,0 +1,303 @@
+Notes
+-----
+practice2
+	- try to finish your official work first if any
+	- connect to well established network during interview
+	- try not to mentioned that you're a data ingineer
+	- always give optimal solution if you have, it will save time 
+	- understand merchant-analytics archetecture throughly
+	- what is major accomplishment in last 2 years
+	- how to you monitor you application 
+	- any orchastrastion tools
+	- how your job data is distributed
+	- read about apache-spark
+	- read about kafka, consumer, consumerGroup, partition and offset
+	- read about elasticsearch
+	- code review and best practices
+	- system design
+	- design pattern
+	- spring boot core
+	- multithreading core
+	- immutable class
+	- volatile keyword
+	- transient keyword
+	- concurrent hashmap
+	- comparable vs comparator
+	- Generics in java
+	- Jav collection
+	- java 8 new feature in details
+	- multithreading in details
+	- Async call and completable future
+	- group a collection of emp by name
+	- functionlal interface in java
+	- synchronisation in java
+	- concurrentModification exception
+	- exception throw in overridding method
+	- spring-data-jpa
+	- springboot over spring
+	- default method in interface
+	- static method in inteface
+
+
+Analysis 
+- customer analytics -> RFM, cohert
+- payment source analytics -> payMethod, bank
+- checkout analyics -> tnx, tnx_amount, success_rate
+- failure analytics -> payment_fail, customer_drop
+- industry vs you analytic -> 
+
+personal:
+	- try to finish your official work first if any
+	- connect to well established network during interview
+	- try not to mentioned that you're a data ingineer
+	- always give optimal solution if you have, it will save time 
+	- understand merchant-analytics archetecture throughly
+	- what is major accomplishment in last 2 years (galaxy of start, NIT karnataka)
+	- how to you monitor you application 
+	- any orchastrastion tools
+	- how your job data is distributed
+	- read about apache-spark
+	- read about kafka, consumer, consumerGroup, partition and offset
+	- read about elasticsearch
+	- code review and best practices
+	- system design
+	- design pattern
+	- spring boot core
+	- multithreading core
+	- immutable class
+	- volatile keyword
+	- transient keyword
+	- concurrent hashmap
+	- comparable vs comparator
+	- Generics in java
+	- Jav collection
+	- java 8 new feature in details
+	- multithreading in details
+	- Async call and completable future
+	- group a collection of emp by name
+	- functionlal interface in java
+	- synchronisation in java
+	- concurrentModification exception
+	- exception throw in overridding method
+	- spring-data-jpa
+	- springboot over spring
+	- default method in interface
+	- static method in inteface
+	- Redis internal implementation/ archetechture
+	- how to scale relational database
+Managerial Question:
+	Systems design case studies
+	Loading
+	Caching 
+	Sharding Techniques
+	Network Protocols
+	Database management
+	Scalable systems
+	Concurrency
+	API modeling
+	Servers and maintenance 
+
+
+Analysis 
+- customer analytics -> RFM, cohert
+- payment source analytics -> payMethod, bank
+- checkout analyics -> tnx, tnx_amount, success_rate
+- failure analytics -> payment_fail, customer_drop
+- industry vs you analytic -> 
+
+
+Tell me about yourslef:
+They typically want you to discuss your 'career path', list a few 'major highlights' and end with how your professional past has prepared you for the 'job fitment' in question.
+
+I'm an experienced software engineer
+“I have 10 years of experience developing software systems for First Technologies.
+Prior to my current role, I worked as a developer for three years and a programmer for two years.”
+
+
+Questions:
+
+Q- http verbs in Rest APIs
+	GET			READ						200, 404
+	POST		CREATE						201, 404, 409
+	PUT			UPDATE/REPLACE				200, 204, 404
+	PATCH		PARTIAL UPDATE/REPLACE      200, 204, 404
+	DEELTE		DELETE 						200, 404
+
+Q- Indexing
+	- optimize query performance by minimizing the number of disk accesses
+	- an index is a key|location data structure where key is associated with location of the data record.
+	The indexing has various attributes:  
+		- Access Types: This refers to the type of access such as value based search, range access, etc.
+		- Access Time: It refers to the time needed to find particular data element or set of elements.
+		- Insertion Time: It refers to the time taken to find the appropriate space and insert a new data.
+		- Deletion Time: Time taken to find an item and delete it as well as update the index structure.
+		- Space Overhead: It refers to the additional space required by the index.
+
+
+
+Q- SQL vs NoSQL indexing
+
+Q- elastisearch
+	- index.max_terms_count 
+    - index.refresh_interval
+
+Q- how to optimise your elasticsearch performance/ tuning for elastic search
+	https://www.elastic.co/guide/en/elasticsearch/reference/current/tune-for-indexing-speed.html#_disable_replicas_for_initial_loads
+
+
+Microservices Architecture: 
+	large applications are built as a collection of small functional modules/services. each service has its own well defined responsibilities.
+features:
+	easy maintainable and testable: It is easier to test and has fewer dependencies. debugging & maintenance
+	Loosely coupled :exchanged or upgraded,altered, and scalable 
+	Independently deployable (Agile): small feature can be depployed indepently
+	Designed or organized around business capabilities: well defined responsiblities for bussiness
+	Managed by a small team: 
+Drawbacks: 
+	difficult monitoring: Due to the complexity of the architecture, monitoring are more difficult.  
+	Pre-planning: is essential.  
+	API latency: external api call increase latency  
+	Cost: Expensive compared to monoliths.   
+	Security implications: api call needs to be secure which leads to security implications  
+microservice-communications:
+	When we are talking about Monolithic applications, we said that the communication in Monolithic applications are inter-process communication. So that means it is working on single process that invoke one to another by using method calls.
+	microservices are distributed and communicate with each other by inter-service communication on network level. Therefore, services must interact using an inter-service communication protocols like HTTP, gRPC or message brokers AMQP protocol.
+	Sync communication: The client sends a request and waits for a response from the service. The synchronous communication protocols can be HTTP or HTTPS.
+	Asynchronous communication: the key point here is that, the client should not have blocked a thread while waiting for a response. The most popular protocol for this Asynchronous communications is AMQP (Advanced Message Queuing Protocol).
+REST:
+	(Representational State Transfer) is a service structure/architecture that enables easy and fast communication between client and server. RESTful systems generally communicate over HTTP protocol with HTTP methods (GET, POST, PUT, DELETE etc)
+	feature:
+		Stateless
+		Uniform Interface
+		Cacheable
+		Client-Server
+		Layered System
+		Code on Demand
+HTTP Methods
+	GET: fetch the resource specified in the URI. There is no body in this request. 
+	POST: create a new resource on the server.
+	PUT: update a new resource on the server. Different from the POST method, the result is the same even if the request is repeated multiple times.
+	PATCH : Used to update a single piece of data.
+	DELETE: delete the resource specified in the URI.
+SOLID principle in Oops:
+	- Single Responsibility : Furthermore, it should only have one reason to change.
+	- Open/Closed : Open for Extension, Closed for Modification (causing potential new bugs)
+	- Liskov Substitution : if class B is a subtype of class A, we should be able to replace A with B without disrupting the behavior of our program.
+	- Interface Segregation: larger interfaces should be split into smaller ones
+	- Dependency Inversion : This way, instead of high-level modules depending on low-level modules, both will depend on abstractions.
+final: (keyword) access modifier, imposed restriction
+	class: to stop inhearitance
+	method: to stop method overriding
+	field: to stop value change
+finally: (block) 
+	finally block to 'execute clean up code' like closing connections, closing files, or freeing up threads, as it executes regardless of an exception.
+finalize: (method)
+	Garbage Collector always 'calls just before the deletion/destroying the object' which is eligible for Garbage Collection.
+Garbage collection:
+	programs perform automatic memory management. (Daemon thread)
+	The main objective of Garbage Collector is to free heap memory by destroying unreachable objects.
+StackOverflowError:
+	 'out of space for stack calls' happens when you execute too many methods one inside another (for example with an infinite recursion), which is limited by the size of the stack. 
+OutOfMemoryError:
+	 happens when the JVM runs 'out of space to allocate new objects', which are allocated on the heap.
+Immutable class: we cannot change its content.
+	The class must be declared as final so that child classes can’t be created.
+	Data members in the class must be declared 'private' so that direct access is not allowed.
+	Data members in the class must be declared as 'final' so that we can’t change the value of it after object creation.
+	'No setter method' for data member.
+	A parameterized constructor should initialize all the fields performing a deep copy so that data members can’t be modified with an object reference.
+	Deep Copy of objects should be performed in the getter methods to return a copy rather than returning the actual object reference)
+enum: 
+	Java ensures internally that enum value is instantiated only once. Since java Enums are globally accessible, they can be used for singletons
+Design-patterns:
+	Singleton: 
+		allow to create single instance of that class
+	factory:	
+		create objects without exposing the creation logic
+		client uses the same common 'interface(factory)' to create a new type of object.
+		- car factory
+	Abstract Factory patterns:
+		'super-factory which creates other factories'.
+		- car factor in different location
+	builder:
+		Separate the construction of a complex object from its representation
+		same construction process can create different representations. ex: lombok @builder
+		- creation of complex object
+	facade:
+		provide single interface to a set of interfaces in a subsystem
+		hides the complexities of the subsystem from the client
+		mobile-shopkeeper
+	adapter:
+		Adapter pattern works as a bridge between two incompatible interfaces.
+		- XML to JSON adapter
+	strategy:
+		The Strategy pattern suggests that you take a class that does something specific in a lot of different ways and extract all of these algorithms into separate classes called strategies.
+		- route(A,B) : Car, bike, walk
+	Observer:
+		mechanism to notify multiple objects about any events that happen to the object they’re observing.
+		the object that watch on the state of another object are called Observer(subscriber) and the object that is being watched is called Subject(publisher).
+		- newly lounched Iphone/car
+System-desing;
+	- establishing system aspects such as modules, architecture, components and their interfaces, and data flow
+scaling:
+	vertical: 
+		upgrading the resource capacity of existing machine
+	horizontal: 
+		addition of more computing machines to the network
+	key-factors:
+		- Failure Resilience
+		- Load Balancing
+		- Machine Communication/Api latency
+		- Data Consistency/inconsistency
+		- cost
+		- Limitations
+sharding:
+	- splitting the large dataset into multiple databases
+Partitioning:
+	- separating single database objects (tables, indexes, and views) into distinct portions.
+	- improve controllability, performance, and availability.
+cache:
+	- accessing data more quickly by reducing disk I/O.
+CDN:
+	- globally distributed proxy server network that serves content from locations close by to the end-users. 
+try-catch-finally:
+	- Java try block must be followed by either catch or finally block.
+	- All catch blocks must be ordered from most specific to most general
+	- by throwing same exception in catch block, rethrow an exception
+exception propagation:
+	- An exception is first thrown from the top of the stack and if it is not caught, it drops down the call stack to the previous method.
+	- By default, Checked Exceptions are not forwarded in calling chain (propagated).
+		- using throws keyword, Now Checked Exception can be propagated (forwarded in call stack).
+Throws keyword:
+	- Which exception should be declared?
+		- unchecked exception: under our control so we can correct our code.
+		- error: beyond our control. For example, we are unable to do anything if there occurs VirtualMachineError or StackOverflowError.
+		- using throws keyword, Now Checked Exception can be propagated (forwarded in call stack).
+Exception with overriding:
+	- If the superclass method does not declare an exception
+		-If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception but it can declare unchecked exception.
+	- If the superclass method declares an exception
+		- If the superclass method declares an exception, subclass overridden method can declare same, subclass exception or no exception but cannot declare parent exception.
+@ControllerAdvice & ExceptionHandler:
+	- Global Exception Hanling
+Kafka vs SQS:
+	Kafka
+		- Overall a general purpose message broker.
+		- Stream processing framework. 
+		- Highly scalable system for large workloads that need to send messages in batches (for smooth message passing).
+		- Topics in Kafka consists of multiple sections that are read in parallel by different consumers of a group of consumers, which gives us a very good performance.
+		- For example, if you need to create a very busy broadcast system, Kafka is a good fit.
+		- Ideal for streaming applications where throughput is a major concern
+	SQS
+		- Operated by Amazon (so you don’t need to support the infrastructure).
+		- Better suited for events, when you need to intercept a message (event) from the client, the message is automatically pulled from the queue.
+		- Not as fast as Kafka and not suitable for large workloads.
+		- Better for events with few events per second.
+		- Great fit if you want to respond to the download of an S3 file (start processing that file).
+	- Summing up with SQS, you reduce the administrative tasks of running and scaling a highly available message pool, while getting what you use at an affordable price. On the other hand, Kafka is best for high loads of data and leverages sequential disk I/O operations so needs  less hardware.
+	- We say that Kafka is more scalable and should be used as a pipeline to process the stream. Instead, SQS is designed to move background tasks to an asynchronous pipeline.
+
+	Java interface static method is part of interface only can be used in interface method only.
+	
+
+

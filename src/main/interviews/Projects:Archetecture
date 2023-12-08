@@ -1,0 +1,26 @@
+Projects/Archetecture
+---------------------
+merchant-analytics
+	- facilitate merchant to analyse their transaction data so that the can analyse and grow their bussiness
+	- screen/verticals
+		- customer analytics
+			- new, repeat, churn, 
+			- RFM: RFM analysis is a marketing technique used to quantitatively rank and group customers based on the recency, frequency and monetary value of their recent transactions to identify the best customers and perform targeted marketing campaigns.
+		- payment source analytics
+			- diff pay methods 
+			- bank
+		- failure/success analytics
+			- success rate analysis
+			- total txn amount
+			- failure reason categorisation
+		- industry vs you analytics
+			- rank in industry
+			- customer, money, tnx comaparision
+	- microservice-archetecture [6 micro-services]
+		- raw-data service
+		- data-pipeline service
+		- data-migration service
+		- purge-data service
+		- merchant-category service
+		- data-reconcilation service
+

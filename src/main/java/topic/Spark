@@ -1,0 +1,66 @@
+Spark:
+	data processing platform/framework
+	open-source
+	distributed
+	in-memory(fast)
+	query, analyze, transform and deliver data at a very large scale
+	in-build agg functions
+	processing:
+		-batch
+		-realtime
+
+features:
+	fast-processing:
+		- keep as much data in-memory as possible
+		- distributed RDD over the worker node to parallelize tasks.
+	fault-tolerance:
+	    distributed RDD so if one cluster goes down no worries.
+	    no data loss: data load only when execution starts.
+	in-memory computing:
+	    not like hadoop mapReduce HDFS system, compute in-memory -> fast
+	flexible:
+		supported by various lang like scala, python, java, R etc.
+	better-analytics:
+		spark-SQL, machine learning lib, complex analytics agg etc.
+
+
+spark-components:
+	spark-core:
+		spark-engine, RDD etc.
+	spark-sql:
+	    (structured-data operations) SQL, dataframe, dataset etc.
+	spark-streaming:
+		stream-data operations
+	spark-MLlib:
+		machine-learning lib
+	GraphX:
+		connected component data processing like facebook connection, linkedIn connection etc.
+
+RDD(Resilient(short-period-living strong enough )-Distributed-Dataset):
+	logical programming abstraction that can be operated in parallel.
+RDD operations:
+	Transformation:
+		spark-core operation perform on a RDD that generate a new RDD
+	Action:
+		actual computation on data (RDD) like rdd.count()
+
+Note:
+	RDD created a DAG which is executed when a action is performed.
+
+spark-sql: if one want to work with structure data (like CSV, RDBMS etc)
+	-dataFrame: row-columns(heading)
+
+spark-architecture:
+	- master-slave(worker) architecture
+	- Master-Node contains driver program and spark-context -> cluster-manager which handle resource, distribution, collection etc.
+	every job is distributed into tasks(RDD operations) which are distributed across workers node.
+
+spark vs hadoop(mapReduce):
+ parameter                  Hadoop-MapReduce                    Spark
+ performance                slow                                faster(100x on memory, 10x on disk)
+ real-time-analytics        No (Batch process only)             Yes (Batch and stream processing)
+ cost                       relative less expensive(need disk)  expensive (Need RAM to run in-memory)
+ fault-tolerance            Yes                                 Yes
+ processing                 batch                               batch, stream processing, graph, SQL processing
+ easy to use                No                                  relative easy to use.
+ scalability                Yes                                 Yes

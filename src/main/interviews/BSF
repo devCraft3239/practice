@@ -1,0 +1,41 @@
+BSF
+---
+- microservice advantage vs disadvantage
+- how can two microservices communicate with each other
+	- sync
+	- async
+- Solid principle
+- Exception
+	- RunTime Exception
+		- what is recommended if exception occured
+			Hadling
+	- CompileTime exceptiop
+		- what is recommended if exception occured
+			declaration
+	- exceptionHandler
+		- @ControllerAdvice & ExceptionHandler
+- what is optional in try-catch-finally
+	- why catch, finally
+- final, finally, finalize
+- Garbage collection
+- OutOfMemoryError vs StackOverFlowError
+- Immutable
+- ConcurrentModificationException
+- Synchronized and other way to make to data member thread safe (transient)
+- AtomicInteger vs Integer
+- springboot vs spring
+- @bean vs @Component
+- spring JPA
+- webClient vs restTemplate
+- spring actuators, how _health is useful
+- advantage and disadvantage of using hibernate
+- bean scope
+- bean lifecycle
+- thread lifecycle
+- Reentrant lock
+- Java 8 new feature
+- what is stream, how we make use of it
+- lambda function/expression
+- final keyword, where all can we use it
+- HashMap internal implementaion
+- Hashmap vs concurrent hashmap

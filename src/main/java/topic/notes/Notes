@@ -1,0 +1,8 @@
+Library and client:
+	exposes some public APIs and is provided by some third party
+	and clients make calls to those public APIs to complete their tasks.
+framework:
+	define a structures/skeletons for developing software applications.
+data-stream:
+	data which is being generated continuously.
+	ex: stock-data, gaming-data, social-media data, IOT data, transactional data.

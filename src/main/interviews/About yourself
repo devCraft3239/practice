@@ -1,0 +1,107 @@
+About yourself
+
+Q- Tell me about yourself?
+<Thanks> <Present> <Skill> <Past> <Future> (tell a(your) story)
+I've around 5.5 years of exp mainly into software backend development.
+-> honoured understand the product req and provide innovative tech-enable sol to them,
+core responsibility -> end to end product development and documentations, owning micro-services, building data pipelines, API monitoring and team management
+I've serving paytm 3 years prior to that CARS24,
+I'm always eager to explore new ideas/thing to enhance my skills and I'm looking same in my upcoming career opportunity.
+
+behavioral_question:
+	- situation 
+	- the choice you made (what you did)
+	- the outcome
+
+Q- Tell me about a time when you faced a problem with a project. How did you solve it?
+	- high latency in search of mid_custid_master indices
+		- situation: discovered a high latency in ES index
+		- choice/action: data partitioning (hash based)
+			- mid_custid_0,mid_custid_1,mid_custid_2,mid_custid_3
+		- outcode: 		 10x performance improvement in terms of latency
+
+	- partitionign/sharding of mid_custid_master
+		- 	4.8b   2.8 TB   mid_custid_master
+		-   1.2b   700 GB mid_custid_master_0,1,2,3
+	
+	- Kafka-lag
+		- decrease number of partition 
+		- increase number of consumers
+
+	- elasticsearch filter 
+		- purge non-premium stop working
+		- index.max_terms_count [default : 65,536,  Integer.MAX_VALUE]
+
+Q- feedback for improvement area
+	- junior/peer monitoring initiative
+
+Q- Tell us about a time when you disagreed with your superior.
+Q- ever refuse rude client(product-manager) requirement?
+Q- ever had conflict with peer? how did you handle it.
+	- merchant-lag-long write to kyb team db via api call
+		- decoupled system
+
+Q- any scenrio where you feel you have failed?
+	- EMI leader-board changes
+		- try to consider all depedency like integration
+		- take some buffer for sudden failure scenrio
+		- get the things done atleast
+
+
+Q- Have you ever get negetive feedback from your boss? How did you handle it? 
+	- in my last appraisal evaluation, my manager gave a feedback to take initiate to monitor junior dev.
+	- the feedback was real and I think about it.
+	- now I am monitoring a junior dev
+dd
+
+Q- Tell me about a mistake you made while working as a software developer. How did you handle it? 
+ - we had some changes from pg-team, they were supposed to send bankCode in diff location so I hardcode it and by mistake it went live. so all data for may month was corrupted in s3
+ - I made changes and write new data to newly version_2 s3 bucket
+ - at night within 2 hours I wrote historical job for data insertion and ingest historic data for new version for entire may.
+ - then I inform my manager about this he said if data is corrected then no issues.
+
+
+Q- What is your greatest accomplishment?
+	- getting enrolled in NIT karnataka without any coaching. 
+	- announced as galaxy of star for the month jun 2022
+		- worked on purging part of merchant-analytics that was recognised since it saves a lot of cost from ES. 
+		- 32TB - 23TB
+Q- When you don’t know the answer to something, what is the first thing that you do?
+	- buy some time
+	- analyse the problem
+	- do some research and get possible solution
+	- analyze solution that feets the requiement
+	- discuss the solutions with peers and manager
+Q- If you could design your dream job, what would it look like?
+	- long-term career
+	- work life balance
+	- grow with org | personal growth with org growth
+	- challenging and motivated env/work
+Q- Can you tell me about a side project you've worked on (outside of school or work) in the past year or so?
+	- designed a todo-application
+		- create a list of todo
+		- can mark as done
+		- reminder for todo
+Q- Tell me about your process of getting work done. When you get a new job or take on a new project, how do you go 	  about doing it successfully?
+	- Purpose – Why they do what they do
+	- Plan – How they do what they do
+	- Process – What they do to do what they do
+	- Persistence – What happens when what they do fails
+	- Persuasive communication – How they get others involved in helping what they do become successful
+	- Pride – How they celebrate what they do"
+Q- Tell us about the most challenging project you worked on 
+	my current project is the most challenging project I worked on. 
+	Most of the things were new to new me like spark, ES etc.
+	- come up with artechtual changes 2.0
+Q- Tell us about a time when you had to make a big decision for a crucial client project
+	- architecture 2.0
+	- sharding of mid_custid_master
+Q- What, according to you, are important aspects to maintain productivity at the workplace
+	- priorities your tasks
+	- // Focus on one task at a time 
+	- Set and commit to deadlines.
+	- Track time for tasks.
+	- Avoid unproductive meetings.
+	- use effective inter-communications
+Q- What lessons have you learned from the most challenging project you worked on?
+	- get the things done first (nothing is perfect)

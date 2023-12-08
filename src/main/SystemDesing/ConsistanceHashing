@@ -1,0 +1,13 @@
+load-balancing: evenly distributing/balancing load across n servers
+
+prob: add/remove more servers
+	the overall change should be min
+	(whenever there is a new server added it takes small parts from each existing and the whole hashing must not change)
+
+
+consistence-hashing:
+	we hash (using uniform hash which uniformly distribute server) server also within the same range as key lets say [0....M-1]
+	use multiple(K) hash function to create replica server(k map point for each server) on the circle
+
+	- reduce remapping number of keys to server (only req point to next server will be remapped)
+	- reduce uneven distribution of keys (replication of servers in circle)

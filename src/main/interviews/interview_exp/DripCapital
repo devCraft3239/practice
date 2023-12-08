@@ -1,0 +1,101 @@
+DripCapital
+-----------
+
+Merchant-analytics
+
+INDEXING on DATABASE
+	id |name | address | phone | email | gender
+Cluster and non-cluster
+
+
+Different types of queries:-
+             INDEXING INCREASE THE TRHOUGHPUT
+Select   YES
+Insert   NO
+Update   NO
+Delete   NO
+
+
+
+25 Horses
+We can race 5 at a time
+Want to know fastest 3 horses out of all 25
+How many races will it take ?
+
+
+SOLID PRINCIPLES
+DESIGN PATTERNS
+ - CREATIONAL
+    - SINGLETON
+    - FACTORY
+    - ABSTRACT FACTORY
+    - BUILDER
+ - STRUCTURAL
+    - ADAPTER
+    - DECORATOR
+ - BEHAVIORAL
+    - OBSERVER
+    - STRATEGY
+
+
+SINGLETON PATTERN→
+
+Class SingleTon{
+	Public static SingleTon instance = null;
+	Private Singleton(){
+}
+
+Public Singleton getInstance(){
+	synchronize{
+if(instance == null)
+Instance =  new SingleTon();
+}
+	Return instance;
+}
+}
+
+
+
+
+Find missing and repeating number in an array:-
+1-10  1-N
+[0,1,2,3,4,5,6,,7,8,9………N-1]
+
+
+[2,5,4,3,2]
+[0,1,2,3,4]
+
+[2,-5,4,-3,-2]
+[0,1,2,3,4]
+
+i=0
+i=1, key=4
+i=3 key=3
+i=4 key = 1
+Rep =  2
+
+Missing = 
+O(N)
+O(1)
+
+
+List<Integer> findMissingRep(int[] arr){
+	Int rep = 0, miss =  0;
+	for(int i=0;i<n;i++){
+		Int key = Math.abs(arr[i])-1;
+	if(arr[key] < 0)
+		Rep =  key+1;
+	arr[key] = arr[key]  *  -1;
+}
+
+
+
+for(int i=0;i<n;i++){
+	
+}
+}
+
+
+Multithreading concepts:- 
+
+Are you comfortable with working in new tech other than Java/SpringBoot i.e. - ruby/python ? - FINE

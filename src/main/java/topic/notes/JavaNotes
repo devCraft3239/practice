@@ -1,0 +1,54 @@
+volatile vs synchronized:
+	Synchronized guarantees both atomicity and visibility, while volatile only guarantees visibility.
+	Furthermore, synchronized can be applied to blocks or methods, whereas volatile can only be applied to variables.
+	Additionally, synchronized has a performance cost due to its requirement for locking and unlocking,
+	   whereas volatile has a lower cost as it only affects memory access.
+	Lastly, synchronized can be used for complex operations such as incrementing a counter, while volatile can only be used for simple assignments like setting a flag.
+	Generally, you should use synchronized when you need to ensure the atomicity and visibility of multiple statements or operations.
+	  On the other hand, volatile should be used when you need to ensure the visibility of a single variable that is accessed by multiple threads.
+Serialization:
+	java object -----> a byte stream and save in a file or send over a network.
+	byte stream -------> java object
+
+class-variable vs instance-variable
+
+Access-specifier:
+	private: accessible withing the entity it is defined.
+	default: only accessible inside the same package by default and it is also known as package-private (No modifiers needed).
+	protected: only accessible inside the same package + outside the package within child classes through inheritance only.
+	public: can be accessed from anywhere.
+	Note: So defining private access to the class will make it accessible inside the same package which default keyword already do for us,
+
+method print() always displays integers in base 10.
+any literal number with a decimal point u declare the computer will implicitly cast to double unless you include "F or f"
+Note: the default constructor has the same access modifier as the class
+
+Thread()
+Thread(String name)
+	Thread(Runnable r, String name)
+		Thread(ThreadGroup group, Runnable target, String name)
+	Thread(ThreadGroup group, String name)
+Thread(Runnable target)
+	Thread(ThreadGroup g, Runnable r)
+
+String objects are immutable and any operation like concat(otherString s), replace("source", "replace") will create new one.
+
+in java always pass by value not pass by reference
+
+shift operator:
+	a <<  b => a * 2^b
+	a >> b => a/2^b
+
+switch(arg)
+	arg can be byte, char, short, int, long, String or enum
+
+if we pass Runnable as Thread() arg, Thread class will execute run method of runnable unless you override run method in Thread class.
+
+continue can only occur in loop context not alone with label
+
+finally block can not have a statement which throw checked Exception
+
+the Boolean String constructors are case insensitive like
+new Boolean("true")
+new Boolean("TRUE")
+new Boolean("tRue")

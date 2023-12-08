@@ -1,0 +1,46 @@
+alternative: aerospike
+
+what to cache:
+	- frequently asked data
+	- costly to compute [heavy-compute-time] data
+
+cache:
+	- in-memory data-store for faster access
+	- avoid network/disk call
+	- cache runs on SSD(expensive)
+	- only relevant(useful) information
+	- multiple caching policy like LRU, priority , timeSeries
+	- in-memory application cache  vs distributed global cache vs file-system cache(CDN)
+cache_HIT:
+	when data is served by cache
+cache_MISS:
+	data is not present in cache and loaded from disk
+
+invalidation-eviction
+	- due to limited size of cache
+	- due to update on the data
+		- ttl or LRU
+cache-aside strategy/patter:
+	- cache never talks to DB, only the application code talks to cache
+	- if there is update at DB, callback made to update cache
+	- if cache fails still we can server from DB itself
+read/write cache-through strategy/pattern
+	- cache sits between application and DB
+	- read heavy application
+	- always first cache miss
+
+write-back strategy:
+	- write are store in cache
+	- bulk write made to DB
+	- write heavy application
+
+Redis-core
+	key -> value
+arch:
+	- support clustering
+		-master-slave
+		-primary-replica
+	- sharding
+		- instead of having  single DB
+		- data is distributed across diff smaller shards (horizontal scaling)
+

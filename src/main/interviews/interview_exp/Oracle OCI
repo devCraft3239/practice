@@ -1,0 +1,23 @@
+Oracle OCI
+---------
+Q: number of subarray with the given sum
+
+OCI R1
+------
+Q: implement splitwise
+(i) add user
+(ii) add expense
+(iii) expsense should be divided exact equally amoung users
+(iv) expense should be dividable via % or amount
+
+OCR R2
+------
+design Reddit system
+(i) show trending feed and subsricbe feed
+(ii) create feed group
+(iii) manage user
+
+OCR R3
+------
+implement LRU cache
+rotten orange coding prob
