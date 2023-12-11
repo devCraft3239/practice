@@ -11,81 +11,57 @@ import java.util.List;
 public class ObserverDesignPattern {
 }
 
-abstract class Subject{ // producer
-    abstract void addObserver(Observer o);
-    abstract void removeObserver(Observer o);
-    abstract void notifyObservers();
+interface Subject{
+    void register(Observer observer);
+    void remove(Observer observer);
+    void notifyObservers();
+}
+
+interface Observer{
+    void update();
+}
+
+class YoutubeChannel implements Subject{
     List<Observer> observers;
-}
+    String content;
 
-abstract class Observer{ // subscriber
-    Subject subject;
-    abstract void update();
-}
-
-class CricketDataUpdate extends Subject { // here Cricket data is subject which is subscribed by observer
-    int run;
-    int wicket;
-    int over;
-
-    CricketDataUpdate(List<Observer> observers){
-        this.observers =  observers;
-    }
-
-    CricketDataUpdate(){
+    YoutubeChannel(){
         observers = new ArrayList<>();
     }
 
     @Override
-    public void addObserver(Observer o) {
-        observers.add(o);
+    public void register(Observer observer) {
+        observers.add(observer);
     }
 
     @Override
-    public void removeObserver(Observer o) {
-        observers.remove(o);
+    public void remove(Observer observer){
+        observers.remove(observer);
     }
 
     @Override
     public void notifyObservers() {
-        for (Observer o: observers) {
-            o.update();
-        }
+        observers.stream().forEach(observer -> observer.update());
     }
 
-    public void updateDataChanges(int run, int over, int wicket){
-        this.run =  run;
-        this.over = over;
-        this.wicket =  wicket;
+    public void setNews(String news){
+        this.content = news;
         notifyObservers();
     }
 }
 
-class CurrentScoreDisplay extends Observer{
-    public CurrentScoreDisplay(CricketDataUpdate subject){
-        this.subject = subject;
-        this.subject.addObserver(this); //two way mapping
+class Subscriber implements Observer{
+    String name;
+    YoutubeChannel channel;
+
+    Subscriber(String name, YoutubeChannel channel){
+        this.name = name;
+        this.channel = channel;
+        this.channel.register(this);
     }
 
     @Override
     public void update() {
-        displayCurrentScore();
-    }
-
-    public void displayCurrentScore(){
-        System.out.println("\nCurrent Score Display:\n"
-                + "Runs: " + ((CricketDataUpdate) subject).run +
-                "\nWickets:" + ((CricketDataUpdate) subject).wicket +
-                "\nOvers: " + ((CricketDataUpdate) subject).over);
+        System.out.println("Hey "+name+" new video uploaded "+channel.content);
     }
 }
-
-class ObserverRunner{
-    public static void main(String[] args) {
-        CricketDataUpdate cricketDataUpdate =  new CricketDataUpdate();
-        CurrentScoreDisplay currentScoreDisplayObserver =  new CurrentScoreDisplay(cricketDataUpdate);
-        cricketDataUpdate.updateDataChanges(10,2,1);
-    }
-}
-
-

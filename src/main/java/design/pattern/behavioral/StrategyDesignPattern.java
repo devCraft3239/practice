@@ -12,66 +12,52 @@ import java.util.List;
 public class StrategyDesignPattern {
 }
 
-class Employee{
-    int id;
+interface PaymentStrategy{
+    void pay(int amount);
+}
+
+class CreditCardStrategy implements PaymentStrategy{
     String name;
+    String cardNumber;
 
-    Employee(int id, String name)
-    {
-        this.id = id;
+    CreditCardStrategy(String name, String cardNumber) {
         this.name = name;
+        this.cardNumber = cardNumber;
     }
 
     @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public void pay(int amount) {
+        System.out.println("Paid "+amount+" using credit card");
     }
 }
 
-interface SortStrategy extends Comparator<Employee>{
-}
+class DebitCardStrategy implements PaymentStrategy{
+    String name;
+    String cardNumber;
 
-class SortById implements SortStrategy{
+    DebitCardStrategy(String name, String cardNumber) {
+        this.name = name;
+        this.cardNumber = cardNumber;
+    }
+
     @Override
-    public int compare(Employee e1, Employee e2) {
-        return e1.id == e2.id ? 0 : e1.id < e2.id ? -1 : 1;
+    public void pay(int amount) {
+        System.out.println("Paid "+amount+" using debit card");
     }
 }
 
-class SortByName implements SortStrategy{
-    @Override
-    public int compare(Employee e1, Employee e2) {
-        return e1.name.compareTo(e2.name);
+class ShoppingCart{
+    protected int amount;
+    void pay(PaymentStrategy paymentStrategy){
+        paymentStrategy.pay(amount);
     }
 }
 
-class ClientRunner{
-    List<Employee> employees;
-    ClientRunner(List<Employee> employees){
-        this.employees = employees;
-    }
-    public void sort(SortStrategy sortStrategy){
-        Collections.sort(employees, sortStrategy);
-        employees.stream().forEach(employee -> System.out.println(employee));
-    }
-}
-
-class RunnerMain{
+class Client{
     public static void main(String[] args) {
-        List<Employee> employees =  new ArrayList<>();
-        employees.add(new Employee(1, "B"));
-        employees.add(new Employee(2,"A"));
-        employees.add(new Employee(3, "D"));
-        employees.add(new Employee(4, "C"));
-        ClientRunner clientRunner =  new ClientRunner(employees);
-
-        SortStrategy sortById = new SortById();
-        clientRunner.sort(sortById);
-        System.out.println("-------------------");
-        SortStrategy sortByName = new SortByName();
-        clientRunner.sort(sortByName);
+        ShoppingCart cart = new ShoppingCart();
+        cart.amount = 100;
+        cart.pay(new CreditCardStrategy("abc","123"));
+        cart.pay(new DebitCardStrategy("abc","123"));
     }
 }

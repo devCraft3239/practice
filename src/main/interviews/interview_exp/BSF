@@ -333,4 +333,4 @@ BSF
 
 - HashMap internal implementation with code
 
-- KRU cache implementation with code
+- LRU cache implementation with code

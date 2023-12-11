@@ -37,65 +37,43 @@ DESIGN PATTERNS
     - OBSERVER
     - STRATEGY
 
-
-SINGLETON PATTERN→
-
-Class SingleTon{
-	Public static SingleTon instance = null;
-	Private Singleton(){
-}
-
-Public Singleton getInstance(){
-	synchronize{
-if(instance == null)
-Instance =  new SingleTon();
-}
-	Return instance;
-}
-}
-
-
-
-
 Find missing and repeating number in an array:-
-1-10  1-N
-[0,1,2,3,4,5,6,,7,8,9………N-1]
 
+Multithreading concepts:
+- Thread
+- Runnable -> does not return anything
+	class MyRunnable implements Runnable {
+		public void run() {
+			// code
+		}
+	}
 
-[2,5,4,3,2]
-[0,1,2,3,4]
+	class MyThread extends Thread {
+		public void run() {
+			// code
+		}
+	}
 
-[2,-5,4,-3,-2]
-[0,1,2,3,4]
+	main() {
+		MyRunnable r = new MyRunnable();
+		Thread t = new Thread(r);
+		Tread t1 = new MyThread();
+		t.start();
+		t1.start();
+	}
 
-i=0
-i=1, key=4
-i=3 key=3
-i=4 key = 1
-Rep =  2
+- ExecutorService
+   class ExecutorServiceExample {
+   	public static void main(String[] args) {
+   	    ExecutorService executor = Executors.newFixedThreadPool(4);
+		for (int i = 0; i < 10; i++) {
+   	        Runnable worker = new MyThread("Thread" + i);
+   	        executor.execute(worker);
+   	      }
 
-Missing = 
-O(N)
-O(1)
+   	}
+   }
 
-
-List<Integer> findMissingRep(int[] arr){
-	Int rep = 0, miss =  0;
-	for(int i=0;i<n;i++){
-		Int key = Math.abs(arr[i])-1;
-	if(arr[key] < 0)
-		Rep =  key+1;
-	arr[key] = arr[key]  *  -1;
-}
-
-
-
-for(int i=0;i<n;i++){
-	
-}
-}
-
-
-Multithreading concepts:- 
-
-Are you comfortable with working in new tech other than Java/SpringBoot i.e. - ruby/python ? - FINE
+- Callable -> return value and throws exception
+- Future -> result of a asynchronous computation
+- CompletableFuture -> advanced version of Future that can be used to chain multiple asynchronous operations together

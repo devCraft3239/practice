@@ -1,6 +1,17 @@
 Oracle OCI
 ---------
-Q: number of subarray with the given sum
+Q: find the number of subarray with given sum
+(i) find the number of subarray with given sum
+ex: [1,2,3,4,5] sum = 5
+ans: 2
+explanation: [2,3] and [5]
+ex: [1,2,3,4,5] sum = 6
+ans: 1
+explanation: [1,2,3]
+ex: [1,2,3,4,5] sum = 10
+ans: 0
+explanation: no subarray with sum 10
+
 
 OCI R1
 ------
@@ -13,9 +24,12 @@ Q: implement splitwise
 OCR R2
 ------
 design Reddit system
-(i) show trending feed and subsricbe feed
+(i) show trending feed and subscribe feed
 (ii) create feed group
 (iii) manage user
+(iv) create post
+(v) create comment
+(vi) upvote/downvote
 
 OCR R3
 ------
