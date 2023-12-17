@@ -1,4 +1,4 @@
-package code.DSimpl;
+package LLD;
 
 import lombok.Data;
 

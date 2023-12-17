@@ -68,7 +68,7 @@ enum EngageType{
 }
 
 
-abstract class UserService{
+abstract class UserService2{
     abstract void createUser(UserTiktok user);
 
     abstract void updateUser(UserTiktok user);

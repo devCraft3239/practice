@@ -1,0 +1,235 @@
+Different memory area in java
+ - class area
+    - class level data
+ - heap area
+	- object level data
+ - stack area
+    - static memory allocation per thread
+    - grows and shrinks as per method calls and holds method specific data
+ - program counter register
+    - holds address of current executing instruction per thread
+ - native method stack
+    - native method specific and library data other than java
+
+ Memory-error in java
+ - out of memory error
+	- heap area
+	- occurs:
+		- memory leak - allocating too many objects but not releasing it
+		- insufficient heap size configured for memory intensive application
+		ex:
+		while(true){
+			new Object();
+		}
+
+- stack overflow error
+	- stack area
+	- occurs:
+		- infinite recursion
+		- too many method calls
+	ex:
+		public static void main(String[] args){
+			main(args);
+		}
+Exception:
+	- abnormal condition that disrupts the normal flow of program execution
+	-checked exception
+		- checked at compile time
+		- compiler enforces to handle the exception either by try-catch or throws
+		- ex: IOException
+	-unchecked exception
+		- runtime exception
+		- ex: ArithmeticException
+when to create custom exception?
+	- exception specific to our application not present in java
+	- ex: InsufficientFundsException
+how to create custom exception?
+	- create a class that extends Exception class
+	- create a constructor that accepts String message
+	- call super(message) in the constructor
+	- ex:
+		public class InsufficientFundsException extends Exception{
+			public InsufficientFundsException(String message){
+				super(message);
+			}
+		}
+
+when to extend checked exception?
+	- when you enforce the calling method to handle it explicitly
+	- ex:
+		public void withdraw(double amount) throws InsufficientFundsException{
+			if(amount > balance){
+				throw new InsufficientFundsException("Insufficient funds");
+			}
+			balance -= amount;
+		}
+when to extend unchecked exception?
+	- when you don't enforce the calling method to handle it explicitly
+	- ex:
+		public void withdraw(double amount){
+			if(amount > balance){
+				throw new InsufficientFundsException("Insufficient funds");
+			}
+			balance -= amount;
+		}
+	- calling method can handle it explicitly if it wants to
+	- ex:
+		try{
+			account.withdraw(100);
+		}catch(InsufficientFundsException e){
+			System.out.println(e.getMessage());
+		}
+
+Different data structure in java
+- Array
+- List
+- Set
+- Map
+- Queue
+- Stack
+
+LinkedList implementation in java
+- doubly linked list
+- implements List, Queue, Deque interfaces
+- not synchronized
+- null elements are allowed
+- maintains insertion order
+- faster insertion and deletion
+- slower access
+
+ReST API
+- architectural style for designing networked applications
+- uses HTTP protocol
+- uses JSON or XML for data exchange
+
+REST API standards
+- client-server architecture
+- stateless
+- cacheable
+- layered system
+- uniform interface
+- code on demand
+
+ReST API methods
+- GET - read
+- POST - create
+- PUT - replace
+- DELETE - delete
+- PATCH - update
+
+
+Rest API to add an item to the shopping cart
+- POST /cart/items - add an item to the cart
+- POST /cart/items/{id} - update an item in the cart
+- GET /cart/items - get all items in the cart
+- GET /cart/items/{id} - get an item in the cart
+- DELETE /cart/items/{id} - delete an item in the cart
+- DELETE /cart/items - delete all items in the cart
+- PUT /cart/items - replace all items in the cart
+- PATCH /cart/items - update all items in the cart
+- PATCH /cart/items/{id} - update an item in the cart
+- PUT /cart/items/{id} - replace an item in the cart
+
+difference between PUT and PATCH and POST in REST API
+- POST - create a new resource
+- PUT - replace all fields in the resource
+- PATCH - replace only the specified fields in the resource
+
+REST Status Codes
+- 1xx - informational
+- 2xx - success
+	- 200 - OK
+	- 201 - created
+	- 202 - accepted
+		- request accepted but not processed
+	- 204 - no content
+		- request processed but no content returned
+- 3xx - redirection
+- 4xx - client error
+	- 400 - bad request
+	- 401 - unauthorized
+		- authentication failed  - identity not verified
+	- 403 - forbidden
+		- authentication successful but authorization failed - identity verified but permission denied
+	- 404 - not found
+	- 405 - method not allowed
+- 5xx - server error
+	- 500 - internal server error
+	- 503 - service unavailable
+	- 504 - gateway timeout
+	- 505 - HTTP version not supported
+
+when we encounter 401 or 403  error?
+- when we try to access a resource without authentication
+- when we try to access a resource without authorization
+
+how to handle 401 or 403 error?
+401
+- redirect to login page
+- redirect to error page
+403
+- redirect to home page
+- redirect to access denied page
+
+how to provide authentication in REST API?
+- spring web security
+	- public login/authentication api
+	- private api - requires authentication
+- jwt authentication
+	- jwt secret key
+	- jwt token
+		- header
+			- algorithm
+			- type
+		- payload
+			- issuer
+			- subject
+			- expiration
+			- audience
+			- custom claims
+		- signature
+			- base64 encoded header
+			- base64 encoded payload
+			- secret key
+			- algorithm
+	- add jwt authentication filter before username password authentication filter
+		- extract jwt token from request header
+		- validate jwt token
+		- extract username from jwt token
+		- ex:
+			public class JwtAuthenticationFilter extends OncePerRequestFilter{
+				@Override
+				public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain){
+					String jwtToken = request.getHeader("Authorization");
+					if(jwtToken != null){
+						//validate jwt token
+						//set authentication in security context
+					}
+					chain.doFilter(request, response);
+				}
+			}
+Transaction in spring Boot
+@Transactional
+- @Transactional - method level
+- @Transactional(propagation = Propagation.REQUIRED) - method level // default
+	- if transaction exists, use it
+- @Transactional(propagation = Propagation.REQUIRES_NEW) - method level
+	- if transaction exists, suspend it and create a new transaction
+- @Transactional(propagation = Propagation.NESTED) - method level
+	- if transaction exists, create a savepoint and use it
+@EnableTransactionManagement - class level
+
+SQL query to return all the jobs that are inprogress from job table and tasks table based on start time and end time
+select * from job j inner join task t on j.id = t.job_id where t.start_time < j.end_time and t.end_time > j.start_time;
+
+any situation where you stuck and how you resolved it?
+	- database sharding/partitioning
+
+find the middle of the linkedList
+	- two pointers
+	- one pointer moves one node at a time
+	- another pointer moves two nodes at a time
+	- when the second pointer reaches the end, the first pointer will be at the middle
+given arrival and departure of train,
+	- give the minimum number of platforms required
+	- time interval when the maximum number of trains are present
