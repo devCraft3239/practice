@@ -22,9 +22,9 @@ public class SortedAndRotatedArray {
     static int findPivot(int[] arr, int low, int high){
         if(low <= high){
             int mid =  (low+high)/2;
-            if(arr[mid] == arr[low])
+            if(arr[mid] == arr[low]) // if mid is equal to low, then array is not rotated
                 return mid;
-            if(arr[mid] < arr[low])
+            if(arr[mid] < arr[low]) // if mid is less than low, then pivot is in left half
                 return findPivot(arr, low, mid-1);
             else
                 return findPivot(arr, mid+1, high);

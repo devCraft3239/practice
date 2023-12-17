@@ -63,16 +63,16 @@ public class SubArrayWithGivenSum {
         return new int[]{-1,-1};
     }
 
-    static int[] subArrayWithGivenSumOptimised2(int[] arr, int sum){
+    static int[] subArrayWithGivenSumOptimised2(int[] arr, int k){
         int n= arr.length;
-        int currSum = 0;
+        int x = 0;
         Map<Integer, Integer> prefixSum =  new HashMap<>();
         for (int i = 0; i < n; i++) {
-            currSum += arr[i];
-            int prevReqSum =  currSum - sum;
-            if(prefixSum.containsKey(prevReqSum)) // there is an array with sum = 0
+            x += arr[i];
+            int prevReqSum =  x - k;
+            if(prefixSum.containsKey(prevReqSum)) // there is an array with sum as x-k
                 return new int[]{prefixSum.get(prevReqSum)+1, i};
-            prefixSum.put(currSum, i);
+            prefixSum.put(x, i);
         }
         return new int[]{-1,-1};
     }
@@ -189,7 +189,7 @@ class LargestSubArrayWithGivenSum{
 
     }
 
-    static int largestSubArrayWithGivenSum(int[] arr, int sum){
+    static int largestSubArrayWithGivenSum(int[] arr, int sum){ // o(n^2)
         int n = arr.length;
         int maxLen = 0;
         for (int i = 0; i < n; i++) { // start
@@ -258,14 +258,14 @@ class largestSubArrayWithSum0 {
     }
 
     static int largestSubarrayWithSum0(int arr[]) {
-        int currSum = 0, maxLen = 0;
+        int x = 0, maxLen = 0;
         Map<Integer, Integer> prefixSum = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {
-            currSum += arr[i];
-            if (prefixSum.containsKey(currSum))
-                maxLen = Math.max(maxLen, i - prefixSum.get(currSum));
+            x += arr[i];
+            if (prefixSum.containsKey(x)) // there is an sub array previously with sum as x-k = x as k=0
+                maxLen = Math.max(maxLen, i - prefixSum.get(x));
             else {
-                prefixSum.put(currSum, i);
+                prefixSum.put(x, i);
             }
         }
         return maxLen;
@@ -348,24 +348,24 @@ class LargestSubarrayWithSumClosestToZero{
 
     public static int[] sumClosestToZeroArray(int[] arr){
         Map<Integer, Integer> prefixSum =  new HashMap<>();
-        int currSum = 0;
+        int x = 0;
         for (int i = 0; i < arr.length; i++) {
-            currSum += arr[i];
-            if (prefixSum.containsKey(currSum)) // there is an array with sum = 0
-                return new int[]{prefixSum.get(currSum)+1, i};
-            prefixSum.put(currSum, i);
+            x += arr[i];
+            if (prefixSum.containsKey(x)) // there is an array with sum = 0
+                return new int[]{prefixSum.get(x)+1, i};
+            prefixSum.put(x, i);
         }
         // if some zero is not present
-        int res = Integer.MAX_VALUE;
+        int min = Integer.MAX_VALUE;
         Map<Integer, Integer> sortedMap  = new TreeMap<>(prefixSum);
         List<Integer> sums =  new ArrayList<>(sortedMap.keySet());
         int[] resArr =  new int[2];
         for (int i = 1; i < sums.size(); i++) {
-            if(res < sums.get(i)- sums.get(i-1)){
-                res  = sums.get(i)- sums.get(i-1);
+            if(min < sums.get(i)- sums.get(i-1)){
+                min  = sums.get(i)- sums.get(i-1);
                 resArr = new int[]{sortedMap.get(sums.get(i)), sortedMap.get(sums.get(i-1))};
             }
-            res = Math.min(res, sums.get(i)-sums.get(i-1));
+            min = Math.min(min, sums.get(i)-sums.get(i-1));
         }
         return resArr;
     }

@@ -40,7 +40,7 @@ public class NextGreaterElement {
         for (int i = 1; i < arr.length; i++) {
             while (!st.isEmpty() && arr[i] > st.peek())
                 System.out.println(st.pop()+"--------"+arr[i]);
-//            if (st.isEmpty() || arr[i] <= st.peek())  // push element <= top to the stack as it can not be nge to curr element
+            if (st.isEmpty() || arr[i] <= st.peek())  // push element <= top to the stack as it can not be nge to curr element
                 st.push(arr[i]);
 
         }

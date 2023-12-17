@@ -94,7 +94,7 @@ class PredictWinnerPileGame{
 
  N = 4
  A[] = {5,3,7,10}
-        i     j
+        i      j
  Output: 15
  Explanation: The user collects maximum
  value as 15(10 + 5)
@@ -132,6 +132,7 @@ class MaxSumCollectByPickingCornerCoin{
                 y = (i+1) <= j-1 ? table[i + 1][j - 1]: 0; // if opp pick ith index
                 z = i <= (j-2) ? table[i][j - 2]: 0; // if opp pick j-1 index
 
+                // if both the player play optimally, you'll leave the opponent with minimum value
                 table[i][j] = Math.max(
                         arr[i] + Math.min(x, y), // you pick ith index
                         arr[j] + Math.min(y, z) // you pick jth index
@@ -146,19 +147,19 @@ class MaxSumCollectByPickingCornerCoin{
     }
 
     static int maxCollectCornerCoinsUtil(int[] arr, int i, int j){
-        if(i>j)
+        if(i>j)  // no coin left
             return 0;
-        if(i==j)
+        if(i==j) // only one coin left
             return arr[i];
-        if(j==i+1)
+        if(j==i+1) // only two coin left
             return Math.max(arr[i], arr[j]);
         return Math.max(
-                arr[i] // p1 choosen i
+                arr[i] // p1 chosen i
                 +Math.min(
                         maxCollectCornerCoinsUtil(arr, i+2, j), // if opponent choose i+1
                         maxCollectCornerCoinsUtil(arr, i+1, j-1) // if opponent choosen j  // repeating
                 ),
-                arr[j]
+                arr[j] // p1 chosen j
                 +Math.min(
                         maxCollectCornerCoinsUtil(arr, i+1, j-1) // if opp choosen i   // repeating
                         ,maxCollectCornerCoinsUtil(arr, i, j-2) // if opp chosen j-1
@@ -174,11 +175,11 @@ class MaxSumCollectByPickingCornerCoin{
     }
 
     static int maxCollectCornerCoinsDpUtil(int[] arr, int i, int j){
-        if(i>j)
+        if(i>j) // no coin left
             return 0;
-        if(i==j)
+        if(i==j) //
             return arr[i];
-        if(dp[i][j]  != -1)
+        if(dp[i][j]  != -1) // already computed
             return dp[i][j];
         dp[i][j] =  Math.max(
                 arr[i] // p1 choosen i
@@ -195,6 +196,10 @@ class MaxSumCollectByPickingCornerCoin{
         return dp[i][j];
     }
 }
+
+/**
+ *
+ */
 
 class OptimalStrategyToWinCoinGame {
     public static void main(String[] args) {

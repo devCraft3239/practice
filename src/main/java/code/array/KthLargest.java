@@ -25,7 +25,7 @@ public class KthLargest {
             int pi =  QuickSort.partition(arr, low, high);
             if (pi == k-1)
                 return arr[pi];
-            else if(pi > k-1)
+            else if(pi > k-1) // if pi is greater than k-1, then kth smallest is in left subarray
                 return kthSmallestUtil(arr, low, pi-1, k);
             else
                 return kthSmallestUtil(arr, pi+1, high, k);

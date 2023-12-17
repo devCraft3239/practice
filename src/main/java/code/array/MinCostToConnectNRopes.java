@@ -20,7 +20,7 @@ import java.util.PriorityQueue;
 
 public class MinCostToConnectNRopes {
 
-    public static int minCost(int[] arr){
+    public static int minCost(int[] arr){ // O(nlogn)
         int minCost = 0;
         MinHeap minHeap =  new MinHeap(arr);
         while (minHeap.size >1){
@@ -59,7 +59,7 @@ class MinHeap{
         this.harr =  arr;
         this.CAPACITY = arr.length;
         this.size =  arr.length;
-        int i =  (size-1)/2;
+        int i =  (size-1)/2; // last non-leaf node
         while (i>=0)
             heapify(i--);
     }
