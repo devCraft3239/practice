@@ -1,8 +1,5 @@
 package code.tree;
 
-import com.sun.org.apache.xerces.internal.dom.DeepNodeListImpl;
-
-import javax.swing.*;
 
 public class BST {
     Node root;

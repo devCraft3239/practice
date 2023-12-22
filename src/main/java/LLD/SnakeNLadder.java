@@ -1,6 +1,4 @@
-package main.java.LLD;
-
-import jdk.nashorn.internal.objects.annotations.Getter;
+package LLD;
 
 import java.util.List;
 import java.util.Map;
@@ -26,7 +24,7 @@ public class SnakeNLadder {
     }
 }
 
-class Board{
+class GameBoard{
     int n; // dimension
     Map<Integer, SpecialMove> specialMoves;
 
@@ -54,7 +52,7 @@ class Dice{
     }
 }
 
-class Player{
+class GamePlayer{
     int pos;
     String name;
 }
@@ -87,5 +85,6 @@ enum GameStatus{
     NOT_STARTED,
     STARTED,
     RUNNING,
-    FINISHED
+    FINISHED,
+    DRAWN
 }

@@ -282,3 +282,75 @@ find the middle of the linkedList
 given arrival and departure of train,
 	- give the minimum number of platforms required
 	- time interval when the maximum number of trains are present
+
+
+R2
+----
+Project explanation
+in project what have you analysed and what have you implemented to fix
+	- merchant-analytics
+		- situation:
+			merchant-analytics was taking too much time to ingestion pipeline.
+		- choice/action:
+			- I've analysed the problem and found that we are using ES for search and analytics both.
+			- Set elasticsearch refresh interval to 10 min.
+			- I've proposed to use spark for analytics and ES for search only(no agg/computation on elasticsearch).
+			- I've implemented the same and it was working fine.
+		- outcome:
+			- we were able to reduce ingestion time from 2 hours to 30 mins.
+
+	- merchant-analytics
+		- situation:
+			High latency for customer analytics query.
+		- choice/action:
+			- Database partitioning/sharding
+				sharded mid_custid_master[3TB] table on mids.
+				- mid_custid_master_0, mid_custid_master_1, mid_custid_master_2, mid_custid_master_3, mid_custid_master_4, mid_custid_master_5, mid_custid_master_6, mid_custid_master_7, mid_custid_master_8, mid_custid_master_9
+				- use field type as keyword for aggregation fields
+		- outcome:
+			- we were able to reduce query latency from 2 minutes to 30 secs.
+			- we were able to reduce ES cost from 32TB to 23TB.
+
+RDD vs DataFrame vs DataSet
+DAG
+ConcurrentHashMap
+SOLID principles
+	- Single responsibility principle
+	- Open/closed principle
+	- Liskov substitution principle
+	- Interface segregation principle
+	- Dependency inversion principle
+Mysql lock
+	- optimistic lock
+	- pessimistic lock
+Kafka
+	Consumer group
+	Partition
+	re-balancing
+how do you ensure there is no data loss in kafka while consuming from a topic
+how do ensure there is no data loss in kafka while consumer is down
+how do you ensure there is no data loss in kafka while producer is down
+how do you ensure there is no data loss in kafka while broker is down
+how do you ensure there is no data loss in kafka while zookeeper is down
+how do you ensure there is no data loss in kafka while consuming from a topic
+
+Which CAP properties are followed by elasticSearch
+Middle in linkedList
+
+how spark steaming consume data from kafka
+
+SpringBoot @ConditionalOnProperty annotation
+SpringBoot @Conditional annotation
+SpringBoot @ConditionalOnBean annotation
+how do maintain transaction in springBoot
+can you @Transaction on private method
+
+
+World wide ecommerce project
+	- How to do maintain the data consistency across the globe
+	- how to do maintain time in different time zones
+
+Docker-eco System experience
+what do you do in code review practices
+how deployment in your project - ec2, jenkins
+

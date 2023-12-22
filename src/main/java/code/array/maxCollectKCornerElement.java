@@ -1,7 +1,5 @@
 package code.array;
 
-import sun.nio.cs.ext.MacHebrew;
-
 /**
  Given an array arr[] and an integer K, the task is to find to maximize the sum of K elements in the Array by taking only corner elements.
  Input: arr[] = {8, 4, 4, 8, 12, 3, 2, 9}, K = 3

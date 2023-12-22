@@ -109,7 +109,7 @@ class Board{
     }
 }
 
-enum GameStatus{
+enum Status{
     NOT_STARTED,
     STARTED,
     FINISHED,
