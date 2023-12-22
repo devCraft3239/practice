@@ -83,7 +83,8 @@ BSF
 	- real world circuit breaker [MCB]
 		- a device which is used to protect circuit from damage due to overload or short circuit
 
-	- circuit breaker is used to detect failures and prevent non-transient failures from constantly reoccurring
+	- circuit breaker is used to detect failures
+	- prevent non-transient failures from constantly reoccurring
 	- circuit breaker is used to give fallback response when service is down or slow
 
 	circuit breaker states
@@ -134,6 +135,9 @@ BSF
 			- ClassCastException
 			- IllegalArgumentException
 			- NumberFormatException
+		real world example:
+			- if we are driving a car, then we should not drive car in wrong direction, if we drive car in wrong direction, then we will get accident
+			- if we are driving a car, then we should not break traffic rules, if we break traffic rules, then we will get accident
 
 	- exception handling
 		Imagine that we order a product online, but while en-route, there’s a failure in delivery. A good company can handle this problem and gracefully re-route our package so that it still arrives on time.

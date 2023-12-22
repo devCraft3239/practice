@@ -23,11 +23,10 @@ public class LongestIncreasingSubsequence {
         System.out.println(longestIncreasingSubsequence(new int[]{7,7,7,7,7,7,7}));
 //        System.out.println(lisUsingLCS(new int[]{10, 22, 9, 33, 21, 50, 41, 60, 80}));
     }
-    static int longestIncreasingSubsequence(int[] arr){
+    static int longestIncreasingSubsequence(int[] arr){ // O(n^2)
         int n =  arr.length;
         int[] lis =  new int[n];
-        int maxLis = 1;
-        Arrays.fill(lis, 1);
+        Arrays.fill(lis, 1); // since every element is a subsequence of length 1
         for (int i = 1; i < n; i++) {
             for (int j = i-1; j >=0; j--) {
                 if (arr[i] > arr[j])
@@ -37,16 +36,16 @@ public class LongestIncreasingSubsequence {
         return Arrays.stream(lis).max().getAsInt();
     }
 
-    static int lisUsingLCS(int[] arr){
+    static int lisUsingLCS(int[] arr){ // O(nlogn)
         int[] copyArr = Arrays.stream(arr).distinct().toArray();
-        Arrays.sort(copyArr);
+        Arrays.sort(copyArr); // sort the array as we need to find the longest increase subsequence i.e. in increasing order
         return LongestCommonSubsequence.lengthOfLongestCommonSubsequence(Arrays.toString(arr), Arrays.toString(copyArr));
     }
 }
 
 /**
  Given an array of n positive integers.
- Write a program to find the sum of maximum sum subsequence of the given array
+ Write a program to find the sum of the maximum sum subsequence of the given array
  such that the integers in the subsequence are sorted in increasing order.
  For example, if input is {1, 101, 2, 3, 100, 4, 5}, then output should be 106 (1 + 2 + 3 + 100),
  if the input array is {3, 4, 5, 10}, then output should be 22 (3 + 4 + 5 + 10)
@@ -62,7 +61,7 @@ class MaximumSumIncreasingSubsequence{
     }
     static int maxSumIncreasingSubsequence(int[] arr){
         int n =  arr.length;
-        int[] mis =  Arrays.copyOf(arr, arr.length);
+        int[] mis =  Arrays.copyOf(arr, arr.length); // mis[i] = max sum of increasing subsequence ending at i, since every element will be sum of itself
         for (int i = 1; i < n; i++) {
             for (int j = i-1; j >=0; j--) {
                 if (arr[i] > arr[j])
@@ -181,24 +180,22 @@ class MinNumberOfJumpsProblem{
     }
 
     static int minJumpOptimised(int[] arr){ // O(N)
-        if (arr.length == 0)
+        int n =  arr.length;
+        if (n <= 1)
             return 0;
-        if(arr[0] == 0)
+        if (arr[0] == 0)
             return -1;
-        int possibleStep = arr[0];
-        int maxReach = arr[0];
-        int jump = 1;
-        for (int i = 1; i < arr.length; i++) {
-            // check if reached to end of arr
-            if(i == arr.length -1)
-                return jump;
-            maxReach =  Math.max(maxReach, i+arr[i]);  // maxReach from current Index
-            possibleStep--; // since taken one step/jump
-            if (possibleStep == 0){ // can not make move/jump
-                jump++;
-                if (i > maxReach)
-                    return  -1; // can not reach to ith index means end of array
-                possibleStep = arr[i]; // re-initialise possible steps
+        int cnt = 1, maxReach = arr[0], steps = arr[0];
+        for (int i = 1; i < n; i++) {
+            if (i == n-1)
+                return cnt;
+            maxReach = Math.max(maxReach, i+arr[i]);
+            steps--; // consume a step
+            if (steps == 0){
+                cnt++;
+                if (i >= maxReach)
+                    return -1;
+                steps = maxReach-i;
             }
         }
         return -1;
@@ -278,20 +275,18 @@ class BoxStackProblem{
         for (int i = 0; i < n;i++) {
             Box box = new Box(arr[i]);
             // original
-            boxes[3*i+0] = new Box(Math.max(box.l, box.w), Math.min(box.l, box.w), box.h);
-            // first roation +90
-            boxes[3*i+1] = new Box(Math.max(box.l, box.h), Math.min(box.l, box.h), box.w);
-            // second rotaion -90
-            boxes[3*i+2] = new Box(Math.max(box.w, box.h), Math.min(box.w, box.h), box.l);
+            boxes[3*i+0] = new Box(Math.max(box.l, box.w), Math.min(box.l, box.w), box.h); // no rotation
+            boxes[3*i+1] = new Box(Math.max(box.l, box.h), Math.min(box.l, box.h), box.w); // first rotaion +90
+            boxes[3*i+2] = new Box(Math.max(box.w, box.h), Math.min(box.w, box.h), box.l); // second rotaion -90
         }
-        // sort the boxes' acc to their base area
+        // sort the boxes acc to their base area
         Arrays.sort(boxes);
 
 
         //prepare 2 array heights[] --> LIS and result[]
         int cnt = 3*n;
         int lis[] = new int[cnt];
-        for (int i = 0; i < cnt; i++) {
+        for (int i = 0; i < cnt; i++) { // initialize lis with height of each box, with worst case no box can be stacked
             lis[i] = boxes[i].h;
         }
 //         perfrom LIS on height arr based on area

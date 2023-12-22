@@ -26,7 +26,7 @@ public class LongestCommonSubsequence {
 
     public static void main(String[] args)
     {
-//        System.out.println(lengthOfLongestCommonSubsequence("abcdxyz","xyzabcd"));
+        System.out.println(lengthOfLongestCommonSubsequence("abcdxyz","xyzabcd"));
         System.out.println(lengthOfLongestCommonSubsequence("intention", "execution"));
     }
     public static int lengthOfLongestCommonSubsequence(String str1, String str2){
@@ -101,6 +101,17 @@ class LongestCommonSubstring {
                 }
             }
         }
+        /*
+                \0   A   B   C   D   X   Y   Z
+           \0    0   0   0   0   0   0   0   0
+           X     0   0   0   0   0   1   0   0
+           Y     0   0   0   0   0   0   2   0
+           Z     0   0   0   0   0   0   0   3
+           A     0   1   0   0   0   0   0   0
+           B     0   0   2   0   0   0   0   0
+           C     0   0   0   3   0   0   0   0
+           D     0   0   0   0   4   0   0   0
+         */
         return maxLen;
     }
 }
@@ -179,14 +190,14 @@ class MinEditDistance{
 
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
-                if (str1.charAt(i-1) == str2.charAt(j-1))
-                    table[i][j] = table[i-1][j-1];
+                if (str1.charAt(i - 1) == str2.charAt(j - 1))
+                    table[i][j] = table[i - 1][j - 1];
                 else
                     table[i][j] = 1 + Math.min(
                             Math.min(
-                                    table[i-1][j], // insertion
-                                    table[i][j-1]), // deletion
-                            table[i-1][j-1]); // replacement
+                                    table[i - 1][j], // insertion
+                                    table[i][j - 1]), // deletion
+                            table[i - 1][j - 1]); // replacement
             }
         }
         return table[m][n];

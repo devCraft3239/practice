@@ -1,6 +1,7 @@
 package code.dp;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,6 +20,28 @@ import java.util.List;
 
  * */
 public class CoinPileMaxCollect {
+
+    static int maxCollection(List<List<Integer>> piles,int k){
+        return maxCollectionCompute(piles,0, k);
+    }
+
+    static int maxCollectionCompute(List<List<Integer>> piles, int pileIndex, int k){
+        if (piles.size() == 0 || k == 0)
+            return 0;
+        if (piles.size() == 1)
+            return piles.get(0).stream().limit(k).mapToInt(Integer::intValue).sum();
+        if (k == 1)
+            return piles.stream().mapToInt(pile -> pile.get(0)) // map each pile to first coin
+                    .max().getAsInt(); // get max from all first coin
+        int maxCollect = maxCollectionCompute(piles.subList(1, piles.size()), k, pileIndex+1); // don't pick any from the current pile
+        int pickAmount = 0;
+        for (int i = 0; i < Math.min(k, piles.get(pileIndex).size()); i++) { // pick i+1 coins from current pile
+            pickAmount += piles.get(pileIndex).get(i);
+            maxCollect = Math.max(maxCollect, pickAmount+maxCollectionCompute(piles.subList(1, piles.size()),  pileIndex+1, k-(i+1))); // pick i+1 coins from current pile
+        }
+        return maxCollect;
+    }
+
     static int maxCollect(List<List<Integer>> piles,int k){
         int n =  piles.size();
         int[][] dp =  new int[n][k+1];
@@ -37,8 +60,8 @@ public class CoinPileMaxCollect {
 
         int bestCollect = computeMax(pileIndex+1, piles, k, dp); //don't pick any from the current pile
         int pickAmount = 0;
-        for (int i = 0; i < Math.min(k, piles.get(pileIndex).size()); i++) { // pick i+1 coin from index/current pile
-            pickAmount += piles.get(pileIndex).get(i); // amount get by pick i+1 th coin
+        for (int i = 0; i < Math.min(k, piles.get(pileIndex).size()); i++) { // pick i+1 coins from current pile
+            pickAmount += piles.get(pileIndex).get(i);
             bestCollect = Math.max(bestCollect, pickAmount+computeMax(pileIndex+1, piles, k-(i+1), dp));
         }
         return dp[pileIndex][k] = bestCollect;

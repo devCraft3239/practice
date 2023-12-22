@@ -1,5 +1,6 @@
 package code.dp;
 
+import java.util.Arrays;
 import java.util.function.IntBinaryOperator;
 import java.util.stream.IntStream;
 
@@ -12,7 +13,7 @@ import java.util.stream.IntStream;
  A broken egg must be discarded.
  The effect of a fall is the same for all eggs.
  If the egg doesn't break at a certain floor, it will not break at any floor below.
- If the eggs breaks at a certain floor, it will break at any floor above.
+ If the eggs break at a certain floor, it will break at any floor above.
  Return the minimum number of moves that you need to determine with certainty what the value of f is.
  Input:
  N = 1, K = 2
@@ -35,6 +36,24 @@ public class EggDroppingProblem {
         System.out.println(minTrailRecur(2,1));
         System.out.println(minTrailRecur(2,6));
         System.out.println(minTrailRecur(2,10));
+    }
+
+    static int minTrail(int eggs, int floor){
+        // base cases
+        if(eggs == 1)
+            return floor;
+        if(floor == 0 || floor == 1)
+            return 1;
+        int minTrail =  Integer.MAX_VALUE, cnt =0;
+        for (int i = 1; i <= floor; i++) {
+            cnt = 1 + // adding 1 for current attempt
+                    Math.max(
+                            minTrail(eggs-1, i-1), // if egg breaks
+                            minTrail(eggs, floor-i) // if egg doesn't break check for upper floor
+                    );
+            minTrail = Math.min(minTrail, cnt);
+        }
+        return minTrail;
     }
 
     static int minTrailRecur(int n, int f){

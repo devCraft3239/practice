@@ -26,7 +26,7 @@ enum Location {
 }
 
 abstract class Car{
-    abstract void drive();
+    abstract void assemble();
     Location location;
 }
 
@@ -36,7 +36,7 @@ class SedanCar extends Car{
     }
 
     @Override
-    public void drive() {
+    public void assemble() {
         System.out.println("Driving Sedan Car");
     }
 }
@@ -47,7 +47,7 @@ class MiniCar extends Car{
     }
 
     @Override
-    public void drive() {
+    public void assemble() {
         System.out.println("Driving Mini Car");
     }
 }
@@ -58,7 +58,7 @@ class LuxuryCar extends Car{
     }
 
     @Override
-    public void drive() {
+    public void assemble() {
         System.out.println("Driving Luxury Car");
     }
 }

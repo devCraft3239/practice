@@ -44,6 +44,28 @@ public class LongestPalindromeSubString {
                 }
             }
         }
+        /*
+        maxLen = 1
+              \0 F O R G E E K S S K E E G F O R
+           \0  1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+            F  0 1 0
+            O  0
+            R  0
+            G  0
+            E  0
+            E  0
+            K  0
+            S  0
+            S  0
+            K  0
+            E  0
+            E  0
+            G  0
+            F  0
+            O  0
+            R  0
+         */
+
         System.out.println(str.substring(start, start+maxLength));
         return maxLength;
     }
@@ -75,12 +97,12 @@ class MinimumNumberOfInsertionForPalindrome {
     private static int minInsertionUtil(String str, int l, int h){
         // base cases
         if(h< l) return Integer.MAX_VALUE;
-        if (l==h) return 0; // for length = 1
+        if (l==h) return 0; // for string with len = 1
         if (l==h-1) return str.charAt(h) == str.charAt(l) ? 0 : 1; // for string with len = 2
 
         // check if first and last character are same, call recur accordingly
         return str.charAt(l) == str.charAt(h) ? minInsertionUtil(str, l+1, h-1) :
-                Math.min(minInsertionUtil(str, l+1, h), minInsertionUtil(str, l, h-1))+1;
+                1+Math.min(minInsertionUtil(str, l+1, h), minInsertionUtil(str, l, h-1));
     }
 
     public static int minInsertionDp(String str){
@@ -104,12 +126,6 @@ class MinimumNumberOfInsertionForPalindrome {
                 dp[i][j] =  str.charAt(i) == str.charAt(j) ? dp[i+1][j-1] : Math.min(dp[i+1][j], dp[i][j-1])+1;
             }
         }
-//        for (int i = 0; i < n; i++) {
-//            for (int j = 0; j < n; j++) {
-//                System.out.print(dp[i][j]+" ");
-//            }
-//            System.out.println("");
-//        }
         return dp[0][n-1];
     }
 }
@@ -173,7 +189,7 @@ class PalindromeIndex {
         {
             i++;j--;
         }
-        if(i>j) // already palindrome string with even length
+        if(i>j) // if string is already palindrome
             return -1;
         return checkPalindrome(str.substring(i+1,j)) ? i  // by removing index i
                 : checkPalindrome(str.substring(i,j+1)) ? j // by removing index j
@@ -241,8 +257,6 @@ class OptimalStrategyForAGame{
             }
         }
         return t[0][n-1];
-
-
     }
 }
 

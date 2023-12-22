@@ -14,12 +14,12 @@ import java.util.Arrays;
  Output: 0
 
  * */
-class MinCoinChangeProblem {
+class CoinChangeProblem {
     public static void main(String[] args) {
-        System.out.println(minCoinChange(new int[]{9, 6, 5, 1}, 11));
-        System.out.println(minCoinChange(new int[]{2}, 3));
+        System.out.println(coinChange(new int[]{9, 6, 5, 1}, 11));
+        System.out.println(coinChange(new int[]{2}, 3));
     }
-    public static int minCoinChange(int[] coins, int target){
+    public static int coinChange(int[] coins, int target){
         Arrays.sort(coins);
         int n = coins.length;
         int[][] mcc = new int[n+1][target+1];
@@ -40,7 +40,7 @@ class MinCoinChangeProblem {
                     mcc[i][j] = Math.min(mcc[i-1][j], // don't include current coin
                             1+mcc[i][j-coins[i-1]]); // include current coin, 1(cnt) used for current coin
                 }else{
-                    mcc[i][j] = mcc[i-1][j];
+                    mcc[i][j] = mcc[i-1][j]; // can't include current coin
                 }
             }
         }
@@ -73,14 +73,14 @@ public class O1KnapsackProblem{
             dp[0][j] = 0;
         }
 
-        for (int i = 1; i <=n; i++) {
-            for (int j = 1; j <= capacity; j++) {
+        for (int i = 1; i <=n; i++) { // for each item
+            for (int j = 1; j <= capacity; j++) { // for each capacity/target
                 if (j < weights[i-1]){
                     dp[i][j] = dp[i-1][j]; // can not pick this weight
                 }else{
                     dp[i][j] = Math.max(
                       dp[i-1][j],  // not picking up this item
-                      values[i-1]+dp[i-1][j-weights[i-1]]
+                      values[i-1]+dp[i-1][j-weights[i-1]] // picking up this item
                     );
                 }
             }
@@ -103,33 +103,33 @@ public class O1KnapsackProblem{
  6, i.e., 5+17=22.
  * */
 class RodCuttingMaximizeProfit{  // similar to 0/1 knapsack
-    static int maxProfitCuttingRod(int[] price, int[] lengths, int capacity){
+    static int maxProfitCuttingRod(int[] price, int[] lengths, int l){
         int n = price.length;
-        int[][] dp =  new int[n+1][capacity+1];
+        int[][] dp =  new int[n+1][l+1];
 
-        // for capacity 0
+        // for length 0
         for (int i = 0; i<=n; i++) {
             dp[i][0] = 0;
         }
 
-        // for no weight/value provided
+        // for no price/length provided
         for (int j = 0; j<=n; j++) {
             dp[0][j] = 0;
         }
 
-        for (int i = 1; i <=n; i++) {
-            for (int j = 1; j <= capacity; j++) {
+        for (int i = 1; i <=n; i++) { // for each item
+            for (int j = 1; j <= l; j++) { // for each length/target
                 if (j < lengths[i-1]){
                     dp[i][j] = dp[i-1][j]; // can not pick this weight
                 }else{
                     dp[i][j] = Math.max(
                             dp[i-1][j],  // not picking up this item
-                            price[i-1]+dp[i-1][j-lengths[i-1]]
+                            price[i-1]+dp[i][j-lengths[i-1]]
                     );
                 }
             }
         }
-        return dp[n][capacity];
+        return dp[n][l];
     }
 }
 
@@ -210,13 +210,13 @@ class EqualPartitionSumProblem{ // equivalent to 0/1 knapsack problem, weather t
 class MinSumDiffPartitionProblem{
     static int midDiffPartition(int[] arr){
         int n =  arr.length;
-        int sum =  Arrays.stream(arr).sum();
+        int sum =  Arrays.stream(arr).sum()/2;
         boolean[][] t =  EqualPartitionSumProblem.equalPartitionPossible(arr, n, sum);
         int minDiff =  Integer.MAX_VALUE;
         // The idea is, sum of S1 is j, and it should be closest to sum/2, i.e., 2*j should be closest to sum.
-        for (int j = sum/2; j >=0; j--) {
+        for (int j = sum; j >=0; j--) {
             if(t[n][j]){
-                minDiff = sum-2*j;
+                minDiff = sum-j;
                 break;
             }
         }

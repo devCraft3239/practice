@@ -35,8 +35,7 @@ public class NumberOfWayToCoverADistance {
 
     }
     static int minWaysCnt(int n){ // similar to fibonacci
-        // ways[i] represent number of way to reach to ith index
-        int[] ways = new int[n+1];
+        int[] ways = new int[n+1]; // ways[i] represent number of ways to reach ith step
         ways[0] = 1;
         ways[1] = 1;
         ways[2] = 2;
@@ -61,21 +60,22 @@ public class NumberOfWayToCoverADistance {
  We have picked one element from every subarray.
  * */
 class MinSumOneEvery3Consecutive {
-    static int minSum(int arr[]){
+    static int minSum(int[] arr){
         int n = arr.length;
-        //sum[i] is going to store minimum possible sum when arr[i] i part of the solution.
-        int sum[] =new int[n];
+        int[] sum =new int[n]; // sum[i] represent min sum till ith index
 
-        // When there are less than or equal to
-        // 3 elements
+        // Base cases (process first three elements) when n <= 3
         sum[0] = arr[0];
         sum[1] = arr[1];
         sum[2] = arr[2];
 
         // Iterate through all other elements
         for (int i = 3; i < n; i++)
-            sum[i] = arr[i] + minimum(sum[i - 3],
-                    sum[i - 2], sum[i - 1]);
+            sum[i] = arr[i] +
+                    minimum(
+                        sum[i - 3],
+                        sum[i - 2],
+                        sum[i - 1]);
 
         return minimum(sum[n - 1], sum[n - 2], sum[n - 3]);
     }

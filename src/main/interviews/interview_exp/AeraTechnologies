@@ -1,29 +1,34 @@
 Different memory area in java
  - class area
     - class level data
+    ex: static variables, static methods, static blocks, constant pool
  - heap area
 	- object level data
+	ex: instance variables, instance methods, instance blocks, constructor
  - stack area
     - static memory allocation per thread
     - grows and shrinks as per method calls and holds method specific data
- - program counter register
+    ex: local variables, method arguments, return address
+ - program counter(PC) register
     - holds address of current executing instruction per thread
+    ex: if-else, while, for, switch, try-catch, method calls
  - native method stack
     - native method specific and library data other than java
+    ex: JNI, C, C++, etc
 
  Memory-error in java
  - out of memory error
-	- heap area
+	- heap area full
 	- occurs:
 		- memory leak - allocating too many objects but not releasing it
 		- insufficient heap size configured for memory intensive application
 		ex:
-		while(true){
-			new Object();
-		}
+			while(true){
+				new Object();
+			}
 
 - stack overflow error
-	- stack area
+	- stack area full
 	- occurs:
 		- infinite recursion
 		- too many method calls
@@ -31,6 +36,7 @@ Different memory area in java
 		public static void main(String[] args){
 			main(args);
 		}
+
 Exception:
 	- abnormal condition that disrupts the normal flow of program execution
 	-checked exception
@@ -40,9 +46,11 @@ Exception:
 	-unchecked exception
 		- runtime exception
 		- ex: ArithmeticException
+
 when to create custom exception?
 	- exception specific to our application not present in java
 	- ex: InsufficientFundsException
+
 how to create custom exception?
 	- create a class that extends Exception class
 	- create a constructor that accepts String message
@@ -98,9 +106,10 @@ LinkedList implementation in java
 - slower access
 
 ReST API
-- architectural style for designing networked applications
-- uses HTTP protocol
-- uses JSON or XML for data exchange
+- Service to service sync communication
+- HTTP protocol
+- json or xml for data exchange
+
 
 REST API standards
 - client-server architecture
@@ -108,14 +117,14 @@ REST API standards
 - cacheable
 - layered system
 - uniform interface
-- code on demand
+- code on demand (optional)
 
 ReST API methods
 - GET - read
 - POST - create
 - PUT - replace
-- DELETE - delete
 - PATCH - update
+- DELETE - delete
 
 
 Rest API to add an item to the shopping cart
@@ -126,28 +135,36 @@ Rest API to add an item to the shopping cart
 - DELETE /cart/items/{id} - delete an item in the cart
 - DELETE /cart/items - delete all items in the cart
 - PUT /cart/items - replace all items in the cart
+- PUT /cart/items/{id} - replace an item in the cart
 - PATCH /cart/items - update all items in the cart
 - PATCH /cart/items/{id} - update an item in the cart
-- PUT /cart/items/{id} - replace an item in the cart
 
 difference between PUT and PATCH and POST in REST API
 - POST - create a new resource
 - PUT - replace all fields in the resource
-- PATCH - replace only the specified fields in the resource
+- PATCH - update only the specified fields in the resource
 
 REST Status Codes
 - 1xx - informational
+	- 100 - continue
+	- 101 - switching protocols
+	- 102 - processing
+		- request received but not completed
+	-
 - 2xx - success
 	- 200 - OK
+		- request processed successfully
 	- 201 - created
 	- 202 - accepted
 		- request accepted but not processed
 	- 204 - no content
 		- request processed but no content returned
 - 3xx - redirection
+	- 301 - moved permanently
+	- 307 - temporary redirect
 - 4xx - client error
 	- 400 - bad request
-	- 401 - unauthorized
+	- 401 - unauthenticated
 		- authentication failed  - identity not verified
 	- 403 - forbidden
 		- authentication successful but authorization failed - identity verified but permission denied
@@ -173,7 +190,7 @@ how to handle 401 or 403 error?
 
 how to provide authentication in REST API?
 - spring web security
-	- public login/authentication api
+	- public api- login/authentication api
 	- private api - requires authentication
 - jwt authentication
 	- jwt secret key
@@ -208,6 +225,7 @@ how to provide authentication in REST API?
 					chain.doFilter(request, response);
 				}
 			}
+
 Transaction in spring Boot
 @Transactional
 - @Transactional - method level
@@ -219,17 +237,48 @@ Transaction in spring Boot
 	- if transaction exists, create a savepoint and use it
 @EnableTransactionManagement - class level
 
-SQL query to return all the jobs that are inprogress from job table and tasks table based on start time and end time
+SQL query to return all the jobs that are in-progress from job table and tasks table based on start time and end time
 select * from job j inner join task t on j.id = t.job_id where t.start_time < j.end_time and t.end_time > j.start_time;
 
 any situation where you stuck and how you resolved it?
-	- database sharding/partitioning
+		- merchant-analytics
+    		- situation:
+    			merchant-analytics was taking too much time to ingestion pipeline.
+    		- choice/action:
+    			- I've analysed the problem and found that we are using ES for search and analytics both.
+    			- Set elasticsearch refresh interval to 10 min.
+    			- I've proposed to use spark for analytics and ES for search only(no agg/computation on elasticsearch).
+    			- I've implemented the same and it was working fine.
+    		- outcome:
+    			- we were able to reduce ingestion time from 2 hours to 30 mins.
+
+    	- merchant-analytics
+    		- situation:
+    			merchant-analytics query was having high latency.
+    		- choice/action:
+    			- I've analysed the documents modeling and optimised to use keyword type for aggregation fields.
+    		- outcome:
+    			- we were able to reduce query latency from 2 minutes to 30 secs.
+    			- we were able to reduce ES cost from 32TB to 23TB.
+
+    	- merchant-analytics
+    		- situation:
+    			High latency for customer analytics query.
+    		- choice/action:
+    			- Database partitioning/sharding
+    				sharded mid_custid_master[3TB] table on mids.
+    				- mid_custid_master_0, mid_custid_master_1, mid_custid_master_2, mid_custid_master_3, mid_custid_master_4, mid_custid_master_5, mid_custid_master_6, mid_custid_master_7, mid_custid_master_8, mid_custid_master_9
+    				- use field type as keyword for aggregation fields
+    		- outcome:
+    			- we were able to reduce query latency from 2 minutes to 30 secs.
+    			- we were able to reduce ES cost from 32TB to 23TB.
 
 find the middle of the linkedList
 	- two pointers
 	- one pointer moves one node at a time
 	- another pointer moves two nodes at a time
 	- when the second pointer reaches the end, the first pointer will be at the middle
+
 given arrival and departure of train,
 	- give the minimum number of platforms required
 	- time interval when the maximum number of trains are present

@@ -2,11 +2,18 @@ package code.heap;
 
 import code.util.Utils;
 
-public class Heap{
+public interface Heap{
+    void heapify(int index);
+    int getSize();
+    int parent(int index);
+    int left(int index);
+    int right(int index);
+    void insert(int key);
+    int extract();
 
 }
 
-class MinHeap{
+class MinHeap implements  Heap{
     int[] harr;
     int CAPACITY;
     int size;
@@ -19,7 +26,8 @@ class MinHeap{
             heapify(i--);
     }
 
-    void heapify(int i){
+    @Override
+    public void heapify(int i){
         int smallest = i;
         int left = 2*i+1, right = 2*i+2;
         if(harr[smallest] < harr[left])
@@ -32,37 +40,43 @@ class MinHeap{
         }
     }
 
-    int getSize(){
+    @Override
+    public int getSize(){
         return size;
     }
 
-    int parent(int i){
+    @Override
+    public int parent(int i){
         return (i-1)/2;
     }
 
-    int left(int i){
+    @Override
+    public int left(int i){
         return 2*i+1;
     }
 
-    int right(int i){
+    @Override
+    public int right(int i){
         return 2*i+2;
     }
 
-    void insert(int k){
+    @Override
+    public void insert(int k){
         if (size == CAPACITY)
             throw new StackOverflowError("Out of memory");
         size++;
         int i = size-1;
-        harr[i] = k;
-        while (i != 0 && harr[parent(i)] > harr[i]) {
+        harr[i] = k; // insert at last
+        while (i != 0 && harr[parent(i)] > harr[i]) { // heapify
             Utils.swap(harr, i, parent(i));
             i = parent(i);
         }
     }
 
+    @Override
     public int extract(){
         int val = harr[0];
-        Utils.swap(harr, 0, size-1);
+        Utils.swap(harr, 0, size-1); // swap first and last
         size--;
         heapify(0);
         return val;

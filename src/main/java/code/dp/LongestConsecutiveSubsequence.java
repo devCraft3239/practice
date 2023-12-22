@@ -15,7 +15,7 @@ import java.util.HashSet;
  * */
 public class LongestConsecutiveSubsequence { // Hashing
 
-    public static int longestConsecutiveSubsequence(int[] arr){
+    public static int longestConsecutiveSubsequence(int[] arr){ // O(nlogn)
         arr = Arrays.stream(arr).sorted().distinct().toArray();
         int cnt = 1, lcs = 1;
         for (int i = 1; i < arr.length; i++) {
@@ -28,16 +28,18 @@ public class LongestConsecutiveSubsequence { // Hashing
         return lcs;
     }
 
-    public static int longestConsecutiveSubsequenceHashing(int[] arr){
-        HashSet lookupSet =  new HashSet(Arrays.asList(arr));
+    public static int longestConsecutiveSubsequenceHashing(int[] arr){ // O(n)
+        HashSet<Integer> lookup = new HashSet<>();
+        for (int el : arr) {
+            lookup.add(el);
+        }
         int lcs = 1;
-        for (int i = 0; i < arr.length; i++) {
-            // check if this can be starting of seq
-            if (!lookupSet.contains(arr[i]-1)){ // check if this can be start of the consecutive subsequence
-                int j = arr[i];
-                while (lookupSet.contains(j))
-                    j++;
-                lcs = Math.max(lcs, j- arr[i]);
+        for (int el : arr) {
+            if (!lookup.contains(el - 1)) { // if el-1 is not present, then el is the starting element of a subsequence
+                int cnt = 1;
+                while (lookup.contains(el + cnt))
+                    cnt++;
+                lcs = Math.max(lcs, cnt);
             }
         }
         return lcs;

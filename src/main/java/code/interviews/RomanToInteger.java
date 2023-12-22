@@ -14,12 +14,12 @@ public class RomanToInteger {
         romanToInt.put("C", 100);
         romanToInt.put("D", 500);
         romanToInt.put("M", 1000);
-        romanToInt.put("IV", 4);
-        romanToInt.put("IX", 9);
-        romanToInt.put("XL", 40);
-        romanToInt.put("XC", 90);
-        romanToInt.put("CD", 400);
-        romanToInt.put("CM", 900);
+        romanToInt.put("IV", 4); // special attention
+        romanToInt.put("IX", 9); // special attention
+        romanToInt.put("XL", 40); // special attention
+        romanToInt.put("XC", 90); // special attention
+        romanToInt.put("CD", 400); // special attention
+        romanToInt.put("CM", 900); // special attention
     }
 
     public static void main(String[] args) {
@@ -38,9 +38,9 @@ public class RomanToInteger {
         for (int i = 0; i < chars.length; i++) {
             char c =  chars[i];
 
-            if(i < chars.length-1 && c == 'I' && (chars[i+1] == 'V' || chars[i+1] == 'X')
-                    || i < chars.length-1 && c == 'X' && (chars[i+1] == 'L' || chars[i+1] == 'C')
-                    || i < chars.length-1 && c == 'C' && (chars[i+1] == 'D' || chars[i+1] == 'M'))
+            if(i < chars.length-1 && c == 'I' && (chars[i+1] == 'V' || chars[i+1] == 'X') // IV, IX
+                    || i < chars.length-1 && c == 'X' && (chars[i+1] == 'L' || chars[i+1] == 'C') // XL, XC
+                    || i < chars.length-1 && c == 'C' && (chars[i+1] == 'D' || chars[i+1] == 'M'))  // CD, CM
             {key = c + String.valueOf(chars[i + 1]);i++;}
             else
                 key =  String.valueOf(c);
