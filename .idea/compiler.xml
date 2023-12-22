@@ -11,4 +11,9 @@
       </profile>
     </annotationProcessing>
   </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Practice" options="-parameters --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-modules java.xml" />
+    </option>
+  </component>
 </project>
