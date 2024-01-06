@@ -7,4 +7,6 @@
 /.idea_modules.iml
 /.idea_modules.ipr
 /.idea_modules.iws
+target/
+
 
