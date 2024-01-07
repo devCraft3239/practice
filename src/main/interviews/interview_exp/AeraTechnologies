@@ -17,7 +17,7 @@ Different memory area in java
     ex: JNI, C, C++, etc
 
  Memory-error in java
- - out of memory error
+ - outOfMemoryError
 	- heap area full
 	- occurs:
 		- memory leak - allocating too many objects but not releasing it
@@ -27,7 +27,7 @@ Different memory area in java
 				new Object();
 			}
 
-- stack overflow error
+- stackOverflowError
 	- stack area full
 	- occurs:
 		- infinite recursion
@@ -106,6 +106,7 @@ LinkedList implementation in java
 - slower access
 
 ReST API
+- standard way of building web endpoints
 - Service to service sync communication
 - HTTP protocol
 - json or xml for data exchange
@@ -148,9 +149,6 @@ REST Status Codes
 - 1xx - informational
 	- 100 - continue
 	- 101 - switching protocols
-	- 102 - processing
-		- request received but not completed
-	-
 - 2xx - success
 	- 200 - OK
 		- request processed successfully
@@ -209,7 +207,7 @@ how to provide authentication in REST API?
 			- base64 encoded payload
 			- secret key
 			- algorithm
-	- add jwt authentication filter before username password authentication filter
+	- add jwt authentication filter before username/password authentication filter
 		- extract jwt token from request header
 		- validate jwt token
 		- extract username from jwt token
@@ -290,6 +288,7 @@ Project explanation
 in project what have you analysed and what have you implemented to fix
 	- merchant-analytics
 		- situation:
+			slow ingestion pipelines
 			merchant-analytics was taking too much time to ingestion pipeline.
 		- choice/action:
 			- I've analysed the problem and found that we are using ES for search and analytics both.
@@ -311,18 +310,128 @@ in project what have you analysed and what have you implemented to fix
 			- we were able to reduce query latency from 2 minutes to 30 secs.
 			- we were able to reduce ES cost from 32TB to 23TB.
 
+Data:
+	Structured:
+		- Relational
+	Semi-structured:
+		- JSON
+		- XML
+	Unstructured:
+		- logs
+		- images
+
 RDD vs DataFrame vs DataSet
-DAG
+
+- Dataset/Dataframe ---> Catalyst Optimizer ---> (optimised)RDD ---> DAG ---> Spark Engine ---> Cluster Manager ---> Cluster
+
+
+RDD:
+	- Data  500MB
+		- partitions1 (128 HDFS) - Node 1
+		- partitions2 (128 HDFS) - Node 2
+		- partitions3 (128 HDFS) - Node 2
+		- partitions4 (128 HDFS) - Node 3
+
+	- operations:
+		- transformation
+			- map
+			- filter
+			- flatMap
+			- groupByKey
+			- reduceByKey
+			- join
+			- cogroup
+			- union
+			- intersection
+			- distinct
+		- action
+			- collect
+			- count
+			- countByValue
+			- take
+			- top
+			- reduce
+
+DAG:
+	- DAG - Directed Acyclic Graph
+	- DAG is a logical representation of RDD transformations.
+	- DAG is created when an action is called on RDD
+
+
+
+RDD vs Dataframe vs DataSet
+RDD:
+	- Distributed collection of elements
+	- immutable
+	- unstructured
+	- no compile time type safety
+	- no optimization
+	- API
+	- full control but complex
+Dataframe:
+	- Organized into named columns
+	- immutable
+	- structured
+	- compile time type safety
+	- optimization : catalyst optimizer
+	- API
+	- limited control but simple
+Dataset:
+	- Extension of dataframe
+	- immutable
+	- structured and semi-structured
+	- compile time type safety
+	- optimization: catalyst optimizer
+	- API
+	- advance Encoders
+	- limited control but simple
+
 ConcurrentHashMap
+
+ConcurrentHashMap vs HashTable vs SynchronizedMap
+ConcurrentHashMap:
+	- lock striping at segment level
+	- better performance
+	- null key and null value not allowed
+	- iterator is weakly consistent but not fail-fast
+	- no blocking
+HashTable:
+	- locking at object level
+	- poor performance
+	- null key and null value not allowed
+	- iterator is fail-fast
+	- blocking
+SynchronizedMap:
+	- locking at object level
+	- poor performance
+	- null key and null value allowed
+	- iterator is fail-fast
+	- blocking
+
+
+
 SOLID principles
 	- Single responsibility principle
 	- Open/closed principle
 	- Liskov substitution principle
 	- Interface segregation principle
 	- Dependency inversion principle
-Mysql lock
+
+Mysql locking mechanism
+	- shared lock
+	- exclusive lock
+	Locking level:
+		- table level
+		- row level
+
+locking Strategies:
 	- optimistic lock
+		- assuming less chance of collision
+		- acquired lock only when updating the record
 	- pessimistic lock
+		- assuming more chance of collision
+		- acquired lock from start to end of transaction
+
 Kafka
 	Consumer group
 	Partition
@@ -351,6 +460,6 @@ World wide ecommerce project
 	- how to do maintain time in different time zones
 
 Docker-eco System experience
-what do you do in code review practices
+what do you do in code review practices: SOLID principal
 how deployment in your project - ec2, jenkins
 

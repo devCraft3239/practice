@@ -15,12 +15,12 @@ merchant-analytics
 			- failure reason categorisation
 		- industry vs you analytics
 			- rank in industry
-			- customer, money, tnx comaparision
-	- microservice-archetecture [6 micro-services]
+			- customer, money, tnx comparison
+	- microservice-architecture [6 micro-services]
 		- raw-data service
 		- data-pipeline service
 		- data-migration service
 		- purge-data service
 		- merchant-category service
-		- data-reconcilation service
+		- data reconciliation service
 

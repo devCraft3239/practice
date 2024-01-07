@@ -1,8 +1,0 @@
-
-client  --request----> server[logic, data]
-client  <---response---- server[logic, data]
-
-client:
-	make a request for a data/service
-server:
-	response to the client with data/service

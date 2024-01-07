@@ -1,24 +1,9 @@
 package code.DSimpl;
 
-class Entry<K,V>{
-    K key;
-    V value;
-    Entry<K,V> next;
-    public Entry(K key, V value){
-        this.key = key;
-        this.value = value;
-    }
-
-    public Entry(K key){
-        this.key = key;
-        this.value = null;
-    }
-}
-
 public class CustomHashMap<K, V> implements CustomMap<K, V> {
-    private Entry<K,V>[] buckets;
     private static final int DEFAULT_CAPACITY = 16;
     private int size = 0;
+    private Entry<K,V>[] buckets;
 
     public CustomHashMap(){
         buckets = new Entry[DEFAULT_CAPACITY];

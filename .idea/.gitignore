@@ -8,5 +8,4 @@
 /.idea_modules.ipr
 /.idea_modules.iws
 /target/
-
-
+target/

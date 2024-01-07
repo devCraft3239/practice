@@ -74,7 +74,7 @@ class CarFactory{
         Car car = null;
         switch (carType){
             case MINI:
-                car = new MiniCar(Location.INDIA);
+                car = new MiniCar(Location.DEFAULT);
                 break;
             case SEDAN:
                 car = new SedanCar(Location.DEFAULT);

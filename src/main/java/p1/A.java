@@ -1,7 +1,7 @@
 package p1;
 
 public class A {
-    private static Object a;
+    private Object a;
     Object b;
     protected Object c;
     public Object d;

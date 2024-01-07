@@ -1,0 +1,26 @@
+Large-scale:
+	- use a large number of data points
+	- having a large customer base
+
+Distributed:
+	- use a large number of machines
+	- having a large number of data centers across the world
+
+Design-patter:
+	- common problem
+	- common solution
+	ex:
+		Youtube content publishing an notify subscribers
+		Netflix content publishing an notify subscribers
+		Instagram content publishing an notify followers
+		- common problem: publish content and notify subscribers
+		- common solution: publisher and subscriber model
+
+LLD:
+	- requirement gathering
+	- use cases diagram
+	- class diagram with relationships
+	- convert class diagram to Model
+	- implement code
+		- OOPS + SOLID principles + Design pattern
+	- design services/controllers

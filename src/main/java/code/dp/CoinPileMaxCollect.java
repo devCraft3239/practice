@@ -25,22 +25,18 @@ public class CoinPileMaxCollect {
         return maxCollectionCompute(piles,0, k);
     }
 
-    static int maxCollectionCompute(List<List<Integer>> piles, int pileIndex, int k){
-        if (piles.size() == 0 || k == 0)
+    static int maxCollectionCompute(List<List<Integer>> piles,int pileIndex, int k){
+        if(pileIndex == piles.size() || k==0)
             return 0;
-        if (piles.size() == 1)
-            return piles.get(0).stream().limit(k).mapToInt(Integer::intValue).sum();
-        if (k == 1)
-            return piles.stream().mapToInt(pile -> pile.get(0)) // map each pile to first coin
-                    .max().getAsInt(); // get max from all first coin
-        int maxCollect = maxCollectionCompute(piles.subList(1, piles.size()), k, pileIndex+1); // don't pick any from the current pile
+        int bestCollect = maxCollectionCompute(piles, pileIndex+1, k); //don't pick any from the current pile
         int pickAmount = 0;
         for (int i = 0; i < Math.min(k, piles.get(pileIndex).size()); i++) { // pick i+1 coins from current pile
-            pickAmount += piles.get(pileIndex).get(i);
-            maxCollect = Math.max(maxCollect, pickAmount+maxCollectionCompute(piles.subList(1, piles.size()),  pileIndex+1, k-(i+1))); // pick i+1 coins from current pile
+            pickAmount += piles.get(pileIndex).get(i); // pick i+1 coins from current pile
+            bestCollect = Math.max(bestCollect, pickAmount+maxCollectionCompute(piles, pileIndex+1, k-(i+1)));
         }
-        return maxCollect;
+        return bestCollect;
     }
+
 
     static int maxCollect(List<List<Integer>> piles,int k){
         int n =  piles.size();

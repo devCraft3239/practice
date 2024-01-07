@@ -117,7 +117,7 @@ Composition vs abstraction
 		- Child object does not have its own life cycle
 		ex: Car has an engine
 	Abstraction:
-		- Abstraction is a way to hide the implementation details and show only the functionality to the users.
+		- Abstraction is a way to hide the implementation details and show only the functionality to the userSplitWises.
 		- Weak relationship
 		- Child object has its own life cycle
 		ex: Car has a steering wheel

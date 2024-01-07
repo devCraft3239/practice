@@ -2,9 +2,9 @@ About yourself
 
 Q- Tell me about yourself?
 <Thanks> <Present> <Skill> <Past> <Future> (tell (your) story)
-	- Myself Mohd Nayyar, you can call me Nayyar.
+	- My name is Mohd Nayyar, thought the process you can call me Nayyar.
 	- I've around 5.5 years of experience in software development, mainly backend development.
-	- I'm post graduate from NIT karnataka in computer science in 2018.
+	- I'm post graduated from NIT karnataka in computer science in 2018. and then I start my career.
 	- I've been involved in various tech in my career.
 		- springBoot as framework
 		- Mysql as database
@@ -13,11 +13,10 @@ Q- Tell me about yourself?
 		- Kafka as event driven system/ service to service communication
 		- I've worked on elasticsearch for search and analytics
 		- I've worked on spark for data processing
-		- I've worked on AWS services like s3, ec2, lambda, cloudwatch, cloudfront, cloudtrail
+		- I've worked on AWS services like s3, ec2, lambda, cloudwatch etc
 	- I'm working on paytm for last 3 years
 		- core responsible for merchant-analytics
-			- requirement gathering
-			- end to end design development
+			- end to end design n development
 			- monitoring performance metrics
 			- monitoring junior dev
 	- I'm always eager to explore new ideas/thing to enhance my skills and I'm looking same in my upcoming career opportunity.
@@ -33,7 +32,7 @@ Q- Tell me about a time when you faced a problem with a project. How did you sol
 			merchant-analytics was taking too much time to ingestion pipeline.
 		- choice/action:
 			- I've analysed the problem and found that we are using ES for search and analytics both.
-			- Set elasticsearch refresh interval to 10 min.
+			- Set elasticsearch refresh interval to 1 min. (default 1 sec)
 			- I've proposed to use spark for analytics and ES for search only(no agg/computation on elasticsearch).
 			- I've implemented the same and it was working fine.
 		- outcome:
@@ -163,10 +162,10 @@ Q- When you don’t know the answer to something, what is the first thing that y
 	- answer honest that you don't know but this could be best possible answer.
 
 Q- If you could design your dream job, what would it look like?
-	- long-term career
-	- work life balance
-	- challenging and motivated env/work
-	- personal growth with org growth
+	1. long-term career
+	2. work life balance
+	3. challenging and motivated env/work
+	4. personal growth with org growth
 
 
 
@@ -175,6 +174,12 @@ Q- Can you tell me about a side project you've worked on (outside of school or w
 		- create a list of todo
 		- can mark as done
 		- reminder for todo
+
+	- designed a split-wise application
+		- create a group
+		- add members
+		- add expense
+		- settle up
 
 
 Q- Tell me about your process of getting work done. When you get a new job or take on a new project, how do you go about doing it successfully?

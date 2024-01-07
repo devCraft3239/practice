@@ -36,7 +36,7 @@ jsw
 		- wrapping up of data and methods into a single unit
 		- example: class
 	- abstraction
-		- hiding the implementation details from the user
+		- hiding the implementation details from the userSplitWise
 		- example: interface
 	- inheritance
 		- acquiring the properties of one class into another class
